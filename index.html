@@ -1,92 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant AI Cold Email & Message Personalizer</title>
-    <!-- Tailwind CSS CDN for clean styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between font-sans selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="w-full max-w-6xl mx-auto px-4 py-4 flex items-center justify-between border-b border-slate-800/60 dark:border-slate-800/60 border-slate-200">
+        <!-- Logo Header -->
+        <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-600/30">
+                O
+            </div>
+            <span class="font-bold text-lg text-slate-100 dark:text-white tracking-tight">Outreach<span class="text-indigo-500">AI</span></span>
+        </div>
+
+        <!-- Light/Dark Toggle -->
+        <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-800 dark:border-slate-800 border-slate-200 bg-slate-900/50 dark:bg-slate-900/50 bg-slate-100 text-slate-300 dark:text-slate-300 text-slate-700 hover:text-indigo-400 transition-colors">
+            <!-- Sun Icon (Dark Mode Active) -->
+            <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon Icon (Light Mode Active) -->
+            <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </header>
 
     <!-- Main Container -->
-    <main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-8 max-w-6xl w-full mx-auto">
         
-        <!-- Header Section -->
+        <!-- Title & Subtitle -->
         <div class="text-center max-w-2xl mb-8">
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
                 Instant AI Cold Email & Message Personalizer
             </h1>
-            <p class="text-slate-400 text-sm md:text-base">
+            <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base">
                 Generate high-converting outreach messages for leads in seconds.
             </p>
         </div>
 
-        <!-- Card Section -->
-        <div class="w-full max-w-xl bg-slate-900/80 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-md">
+        <!-- Main Card Section (Horizontal Grid on PC) -->
+        <div class="w-full bg-slate-900/80 dark:bg-slate-900/80 border border-slate-800 dark:border-slate-800 border-slate-200 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-md grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             
-            <!-- Prospect Input -->
-            <div class="mb-5">
-                <label for="prospectName" class="block text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">
-                    Prospect Name / Company
-                </label>
-                <input 
-                    type="text" 
-                    id="prospectName" 
-                    placeholder="e.g. Ahmad or TechCorp" 
-                    class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors text-sm"
-                >
-            </div>
+            <!-- Left Side: Inputs -->
+            <div class="flex flex-col h-full justify-between gap-4">
+                <div>
+                    <!-- Prospect Input -->
+                    <div class="mb-5">
+                        <label for="prospectName" class="block text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">
+                            Prospect Name / Company
+                        </label>
+                        <input 
+                            type="text" 
+                            id="prospectName" 
+                            placeholder="e.g. Ahmad or TechCorp" 
+                            class="w-full bg-slate-950 dark:bg-slate-950 border border-slate-800 dark:border-slate-800 border-slate-300 rounded-xl px-4 py-3 text-slate-100 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm"
+                        >
+                    </div>
 
-            <!-- Outreach Goal Selection -->
-            <div class="mb-6">
-                <label for="goal" class="block text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">
-                    Outreach Goal
-                </label>
-                <select 
-                    id="goal" 
-                    class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm cursor-pointer"
-                >
-                    <option value="sales">Sales & Cold Email</option>
-                    <option value="collaboration">Business Collaboration</option>
-                    <option value="freelance">Freelance Pitch</option>
-                </select>
-            </div>
-
-            <!-- Generate Button -->
-            <button 
-                id="generateBtn" 
-                class="w-full bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2 text-sm mb-6"
-            >
-                <span>Generate Message</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-            </button>
-
-            <!-- Output Section -->
-            <div class="relative">
-                <div class="flex items-center justify-between mb-2">
-                    <label for="output" class="text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                        Generated Message
-                    </label>
-                    <span id="badge" class="hidden text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-medium">
-                        Generated
-                    </span>
+                    <!-- Outreach Goal Selection -->
+                    <div class="mb-6">
+                        <label for="goal" class="block text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">
+                            Outreach Goal
+                        </label>
+                        <select 
+                            id="goal" 
+                            class="w-full bg-slate-950 dark:bg-slate-950 border border-slate-800 dark:border-slate-800 border-slate-300 rounded-xl px-4 py-3 text-slate-100 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm cursor-pointer"
+                        >
+                            <option value="sales">Sales & Cold Email</option>
+                            <option value="collaboration">Business Collaboration</option>
+                            <option value="freelance">Freelance Pitch</option>
+                        </select>
+                    </div>
                 </div>
-                
-                <textarea 
-                    id="output" 
-                    rows="6" 
-                    readonly 
-                    placeholder="Your generated outreach message will appear here..." 
-                    class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-200 placeholder-slate-600 focus:outline-none text-sm resize-none mb-3"
-                ></textarea>
 
-                <!-- Copy to Clipboard Button -->
+                <!-- Generate Button -->
+                <button 
+                    id="generateBtn" 
+                    class="w-full bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2 text-sm"
+                >
+                    <span>Generate Message</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Right Side: Output Box -->
+            <div class="relative flex flex-col h-full justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label for="output" class="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                            Generated Message
+                        </label>
+                        <span id="badge" class="hidden text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-medium">
+                            Generated
+                        </span>
+                    </div>
+                    
+                    <textarea 
+                        id="output" 
+                        rows="7" 
+                        readonly 
+                        class="w-full bg-slate-950 dark:bg-slate-950 border border-slate-800 dark:border-slate-800 border-slate-300 rounded-xl p-4 text-slate-200 dark:text-slate-200 placeholder-slate-600 focus:outline-none text-sm drop-shadow-sm resize-none mb-4"
+                    >Welcome to AI Cold Outreach!</textarea>
+                </div>
+
+                <!-- Copy Button -->
                 <button 
                     id="copyBtn" 
-                    class="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.99] text-slate-200 font-medium py-2.5 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-xs border border-slate-700/50"
+                    class="w-full bg-slate-800 dark:bg-slate-800 hover:bg-slate-700 active:scale-[0.99] text-slate-200 font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-xs border border-slate-700/50"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
@@ -99,9 +132,50 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 text-center text-xs text-slate-500 border-t border-slate-900">
-        Clean Client-Side Micro-SaaS Tool • Hosted on Vercel
+    <footer class="py-6 border-t border-slate-900 dark:border-slate-900 border-slate-200 text-slate-500 text-xs">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>Clean Client-Side Micro-SaaS Tool • Hosted on Vercel</div>
+            <div class="flex gap-4">
+                <button onclick="openModal('aboutModal')" class="hover:text-indigo-400 transition-colors">About Us</button>
+                <button onclick="openModal('privacyModal')" class="hover:text-indigo-400 transition-colors">Privacy Policy</button>
+                <button onclick="openModal('termsModal')" class="hover:text-indigo-400 transition-colors">Terms of Use</button>
+            </div>
+        </div>
     </footer>
+
+    <!-- Modals -->
+    <!-- About Modal -->
+    <div id="aboutModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full text-slate-200">
+            <h3 class="text-xl font-bold mb-3 text-white">About Us</h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                OutreachAI is a lightweight, client-side micro-SaaS tool designed to help freelancers, sales teams, and marketers instantly draft high-converting cold messages without heavy subscriptions or backend setup.
+            </p>
+            <button onclick="closeModal('aboutModal')" class="w-full bg-indigo-600 text-white py-2 rounded-xl font-medium text-xs">Close</button>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full text-slate-200">
+            <h3 class="text-xl font-bold mb-3 text-white">Privacy Policy</h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                Your data stays 100% private. OutreachAI runs entirely in your web browser. No names, companies, or generated messages are sent to any external server or stored in any database.
+            </p>
+            <button onclick="closeModal('privacyModal')" class="w-full bg-indigo-600 text-white py-2 rounded-xl font-medium text-xs">Close</button>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full text-slate-200">
+            <h3 class="text-xl font-bold mb-3 text-white">Terms of Use</h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                OutreachAI is provided as a free utility tool for outreach message drafting. Users are solely responsible for ensuring their cold outreach complies with local communication laws and regulations.
+            </p>
+            <button onclick="closeModal('termsModal')" class="w-full bg-indigo-600 text-white py-2 rounded-xl font-medium text-xs">Close</button>
+        </div>
+    </div>
 
     <!-- JavaScript Logic -->
     <script>
@@ -111,8 +185,26 @@
         const goalSelect = document.getElementById('goal');
         const outputBox = document.getElementById('output');
         const badge = document.getElementById('badge');
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
 
-        // Message templates for each outreach goal
+        // Theme Toggle Logic
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Templates
         const templates = {
             sales: [
                 (name) => `Hi ${name},\n\nI came across your business and was impressed by what you're building. I help businesses improve their digital workflow and generate better results.\n\nWould you be interested in exploring a potential solution?`,
@@ -172,7 +264,7 @@
         copyBtn.addEventListener('click', async () => {
             const message = outputBox.value;
 
-            if (!message || message.startsWith("Please enter")) {
+            if (!message || message.startsWith("Please enter") || message.startsWith("Welcome to")) {
                 return;
             }
 
