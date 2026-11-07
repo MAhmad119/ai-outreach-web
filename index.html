@@ -1,1266 +1,377 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>OutreachAI - AI Cold Outreach Generator</title>
+  <title>Free Cold Email & Outreach Message Generator | OutreachAI</title>
+  <meta name="description" content="Create professional cold emails, business collaboration messages and freelance pitches for free with OutreachAI.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ai-outreach-web-blue.vercel.app/">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#020617">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OutreachAI - Free Cold Email Generator">
+  <meta property="og:description" content="Generate professional cold emails and outreach messages in seconds.">
+  <meta property="og:url" content="https://ai-outreach-web-blue.vercel.app/">
+  <meta name="twitter:card" content="summary">
 
-  <!-- Tailwind Dark Mode Configuration -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class'
-    };
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "OutreachAI",
+    "url": "https://ai-outreach-web-blue.vercel.app/",
+    "description": "Free cold email and outreach message generator.",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
   </script>
 
-  <!-- Professional Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- ==========================================
-       CUSTOM STYLES
-       ========================================== -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-    * {
-      box-sizing: border-box;
+    html.dark body { background:#020617; color:#f1f5f9; }
+    html.dark .surface { background:#0f172a; border-color:#1e293b; }
+    html.dark .field { background:#020617; border-color:#334155; color:#f1f5f9; }
+    html.dark .muted { color:#94a3b8; }
+    html.dark .output-panel { background:#020617; border-color:#1e293b; }
+
+    html:not(.dark) body { background:#f1f5f9; color:#0f172a; }
+    html:not(.dark) .surface { background:white; border-color:#e2e8f0; }
+    html:not(.dark) .field { background:#f8fafc; border-color:#cbd5e1; color:#0f172a; }
+    html:not(.dark) .muted { color:#64748b; }
+    html:not(.dark) .output-panel { background:#f8fafc; border-color:#e2e8f0; }
+
+    .welcome {
+      position:fixed; inset:0; z-index:50;
+      display:flex; align-items:center; justify-content:center;
+      background:#020617; padding:20px;
+    }
+    .welcome.hidden { display:none; }
+    .modal { display:none; }
+    .modal.active { display:flex; }
+
+    button, input, select, textarea { transition:.2s; }
+    button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline:2px solid #818cf8; outline-offset:2px;
     }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: background .3s ease, color .3s ease;
+    @media(min-width:768px) {
+      .dashboard { grid-template-columns:.9fr 1.1fr; }
     }
-
-    /* DARK THEME */
-
-    html.dark body {
-      background: #020617;
-      color: #f1f5f9;
-    }
-
-    html.dark .surface {
-      background: #0f172a;
-      border-color: #1e293b;
-    }
-
-    html.dark .field {
-      background: #020617;
-      border-color: #334155;
-      color: #f1f5f9;
-    }
-
-    html.dark .muted {
-      color: #94a3b8;
-    }
-
-    html.dark .output-panel {
-      background: #020617;
-      border-color: #1e293b;
-    }
-
-    html.dark .theme-button {
-      background: #1e293b;
-      color: #f8fafc;
-      border-color: #334155;
-    }
-
-
-    /* LIGHT THEME */
-
-    html:not(.dark) body {
-      background: #f1f5f9;
-      color: #0f172a;
-    }
-
-    html:not(.dark) .surface {
-      background: #ffffff;
-      border-color: #e2e8f0;
-    }
-
-    html:not(.dark) .field {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-      color: #0f172a;
-    }
-
-    html:not(.dark) .muted {
-      color: #64748b;
-    }
-
-    html:not(.dark) .output-panel {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-    }
-
-    html:not(.dark) .theme-button {
-      background: #e2e8f0;
-      color: #0f172a;
-      border-color: #cbd5e1;
-    }
-
-
-    /* LIGHT THEME TEXT FIXES */
-
-    html:not(.dark) .text-slate-100,
-    html:not(.dark) .text-slate-200,
-    html:not(.dark) .text-slate-300 {
-      color: #1e293b;
-    }
-
-    html:not(.dark) .text-slate-400,
-    html:not(.dark) .text-slate-500 {
-      color: #64748b;
-    }
-
-
-    /* WELCOME SCREEN */
-
-    .welcome-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: #020617;
-    }
-
-    .welcome-screen.hidden-screen {
-      display: none;
-    }
-
-
-    /* INFORMATION MODAL */
-
-    .modal {
-      display: none;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-
-    /* GENERAL TRANSITIONS */
-
-    button,
-    input,
-    select,
-    textarea {
-      transition: all .2s ease;
-    }
-
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
-      outline: 2px solid #818cf8;
-      outline-offset: 2px;
-    }
-
-
-    /* DESKTOP DASHBOARD */
-
-    @media (min-width: 768px) {
-
-      .dashboard {
-        grid-template-columns: .9fr 1.1fr;
-      }
-
-    }
-
   </style>
-
 </head>
-
 
 <body class="min-h-screen flex flex-col">
 
-
-  <!-- ==========================================
-       WELCOME SCREEN
-       ========================================== -->
-
-  <section id="welcomeScreen" class="welcome-screen">
-
+  <!-- Welcome Screen -->
+  <section id="welcome" class="welcome">
     <div class="text-center max-w-xl">
-
       <div class="text-6xl mb-6">⚡</div>
-
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
-        Welcome to
-        <span class="text-indigo-400">AI Cold Outreach</span>
+      <h1 class="text-4xl font-extrabold text-white mb-4">
+        Welcome to <span class="text-indigo-400">OutreachAI</span>
       </h1>
-
-      <p class="text-slate-400 mb-8 leading-relaxed">
-        Generate professional sales emails, business collaborations
-        and freelance pitches in seconds.
+      <p class="text-slate-400 mb-8">
+        Generate professional sales emails, collaborations and freelance pitches in seconds.
       </p>
-
-      <button
-        id="startBtn"
-        class="bg-indigo-600 hover:bg-indigo-500 text-white px-9 py-4 rounded-xl font-bold shadow-lg shadow-indigo-500/20"
-      >
+      <button id="start" class="bg-indigo-600 hover:bg-indigo-500 text-white px-9 py-4 rounded-xl font-bold">
         Get Started 🚀
       </button>
-
-      <p class="text-slate-600 text-xs mt-8">
-        Powered by OutreachAI
-      </p>
-
     </div>
-
   </section>
 
-
-
-  <!-- ==========================================
-       HEADER
-       ========================================== -->
-
+  <!-- Header -->
   <header class="surface border-b px-6 py-4">
-
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-
-      <!-- Brand Logo -->
-
       <div class="flex items-center gap-3">
-
-        <div class="text-3xl">⚡</div>
-
+        <span class="text-3xl">⚡</span>
         <div>
-
-          <h1 class="text-xl font-extrabold tracking-tight">
+          <h1 class="text-xl font-extrabold">
             <span class="text-indigo-500">Outreach</span>AI
           </h1>
-
-          <p class="muted text-xs">
-            Smart Outreach Generator
-          </p>
-
+          <p class="muted text-xs">Smart Outreach Generator</p>
         </div>
-
       </div>
 
-
-      <!-- Theme Toggle -->
-
-      <button
-        id="themeToggle"
-        class="theme-button border rounded-lg px-4 py-2 text-sm font-semibold hover:border-indigo-500"
-        aria-label="Switch theme"
-        type="button"
-      >
+      <button id="theme" class="border rounded-lg px-4 py-2 text-sm font-semibold">
         ☀️ Light
       </button>
-
     </div>
-
   </header>
 
-
-
-  <!-- ==========================================
-       MAIN DASHBOARD
-       ========================================== -->
-
+  <!-- Main Content -->
   <main class="flex-1 w-full max-w-7xl mx-auto px-5 md:px-8 py-10">
 
-
-    <!-- Page Heading -->
-
     <div class="mb-8">
-
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-3 tracking-tight">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">
         AI Cold Email & Message Generator
       </h2>
-
-      <p class="muted text-sm md:text-base">
+      <p class="muted">
         Create personalized professional outreach messages for your business.
       </p>
-
     </div>
-
-
-
-    <!-- HORIZONTAL DASHBOARD -->
 
     <div class="dashboard grid grid-cols-1 gap-6">
 
-
-      <!-- ======================================
-           LEFT PANEL: INPUT FORM
-           ====================================== -->
-
+      <!-- Input Panel -->
       <section class="surface border rounded-2xl p-6 shadow-xl">
-
-        <div class="flex items-center gap-3 mb-7">
-
-          <div class="bg-indigo-500/10 text-indigo-500 p-3 rounded-xl">
-            👤
-          </div>
-
-          <div>
-
-            <h3 class="font-bold text-lg">
-              Message Details
-            </h3>
-
-            <p class="muted text-xs">
-              Enter your outreach information
-            </p>
-
-          </div>
-
+        <div class="mb-7">
+          <h3 class="font-bold text-lg">👤 Message Details</h3>
+          <p class="muted text-xs mt-1">Enter your outreach information</p>
         </div>
-
-
 
         <div class="space-y-5">
-
-
-          <!-- Prospect Name -->
-
           <div>
-
-            <label
-              for="prospectName"
-              class="block text-xs font-bold uppercase tracking-wider muted mb-2"
-            >
+            <label class="block text-xs font-bold uppercase muted mb-2">
               Prospect Name / Company
             </label>
-
-            <input
-              type="text"
-              id="prospectName"
+            <input id="name" type="text"
               placeholder="e.g. Sarah / Alex Tech Solutions"
-              class="field w-full border rounded-xl p-4 text-sm focus:border-indigo-500 focus:outline-none"
-            >
-
+              class="field w-full border rounded-xl p-4 text-sm">
           </div>
-
-
-
-          <!-- Outreach Goal -->
 
           <div>
-
-            <label
-              for="goal"
-              class="block text-xs font-bold uppercase tracking-wider muted mb-2"
-            >
+            <label class="block text-xs font-bold uppercase muted mb-2">
               Outreach Goal
             </label>
-
-            <select
-              id="goal"
-              class="field w-full border rounded-xl p-4 text-sm focus:border-indigo-500 focus:outline-none"
-            >
-
-              <option value="sales">
-                💼 Sales & Cold Email
-              </option>
-
-              <option value="collaboration">
-                🤝 Business Collaboration
-              </option>
-
-              <option value="freelance">
-                💻 Freelance Pitch
-              </option>
-
+            <select id="goal" class="field w-full border rounded-xl p-4 text-sm">
+              <option value="sales">💼 Sales & Cold Email</option>
+              <option value="collaboration">🤝 Business Collaboration</option>
+              <option value="freelance">💻 Freelance Pitch</option>
             </select>
-
           </div>
 
-
-
-          <!-- Generate Button -->
-
-          <button
-            id="generateBtn"
-            type="button"
-            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-500/20"
-          >
-            Generate Random Message 🚀
+          <button id="generate"
+            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl">
+            Generate Message 🚀
           </button>
-
-
-
-          <!-- Generator Status -->
 
           <div class="surface border rounded-xl p-4">
-
-            <div class="flex justify-between items-center">
-
-              <span class="muted text-xs font-semibold uppercase">
-                Generator Status
-              </span>
-
-              <span class="text-emerald-500 text-xs font-bold">
-                ● Online
-              </span>
-
-            </div>
-
+            <p class="muted text-xs font-semibold">GENERATOR STATUS</p>
+            <p class="text-emerald-500 text-xs font-bold mt-2">● Online</p>
             <p class="muted text-xs mt-2">
-              18 unique message templates available across 3 outreach goals.
+              18 message templates across 3 outreach goals.
             </p>
-
           </div>
-
         </div>
-
       </section>
 
-
-
-      <!-- ======================================
-           RIGHT PANEL: MESSAGE OUTPUT
-           ====================================== -->
-
+      <!-- Output Panel -->
       <section class="surface border rounded-2xl p-6 shadow-xl flex flex-col">
-
-
-        <!-- Output Heading -->
-
-        <div class="flex justify-between items-center mb-6">
-
-          <div class="flex items-center gap-3">
-
-            <div class="bg-emerald-500/10 text-emerald-500 p-3 rounded-xl">
-              ✉️
-            </div>
-
-            <div>
-
-              <h3 class="font-bold text-lg">
-                Generated Message
-              </h3>
-
-              <p class="muted text-xs">
-                Your personalized outreach content
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <span
-            id="badge"
-            class="hidden text-xs bg-emerald-500/10 text-emerald-500 px-3 py-2 rounded-full border border-emerald-500/20"
-          >
-            ✓ Generated
-          </span>
-
+        <div class="mb-6">
+          <h3 class="font-bold text-lg">✉️ Generated Message</h3>
+          <p class="muted text-xs mt-1">Your personalized outreach content</p>
         </div>
-
-
-
-        <!-- Output Textarea -->
 
         <div class="output-panel border rounded-xl p-5 flex-1 min-h-[300px]">
-
-          <textarea
-            id="output"
-            rows="12"
-            readonly
+          <textarea id="output" rows="12" readonly
             placeholder="Your generated message will appear here..."
-            class="w-full h-full min-h-[280px] bg-transparent text-sm leading-7 resize-none focus:outline-none"
-          ></textarea>
-
+            class="w-full h-full min-h-[280px] bg-transparent text-sm leading-7 resize-none focus:outline-none"></textarea>
         </div>
-
-
-
-        <!-- Output Actions -->
 
         <div class="grid grid-cols-2 gap-3 mt-5">
-
-          <button
-            id="copyBtn"
-            type="button"
-            class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl"
-          >
+          <button id="copy"
+            class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl">
             📋 Copy Message
           </button>
-
-          <button
-            id="clearBtn"
-            type="button"
-            class="surface border hover:border-indigo-500 font-semibold py-3 rounded-xl"
-          >
+          <button id="clear"
+            class="surface border font-semibold py-3 rounded-xl">
             🗑️ Clear
           </button>
-
         </div>
-
 
         <p class="muted text-xs mt-4 text-center">
-          Review your message before sending it to a prospect.
+          Review your message before sending it.
         </p>
-
       </section>
-
     </div>
 
+    <!-- Helpful Information -->
+    <section class="mt-12 max-w-3xl">
+      <h2 class="text-2xl font-bold mb-4">About OutreachAI</h2>
+      <p class="muted leading-7">
+        OutreachAI is a free cold email and message generator for freelancers,
+        entrepreneurs and businesses. Create sales emails, collaboration
+        messages and freelance pitches quickly. Choose your outreach goal,
+        enter a prospect name and generate a ready-to-edit message.
+      </p>
+
+      <h2 class="text-xl font-bold mt-8 mb-3">Frequently Asked Questions</h2>
+
+      <h3 class="font-bold mt-4">Is OutreachAI free?</h3>
+      <p class="muted mt-2">Yes. You can generate outreach message templates for free.</p>
+
+      <h3 class="font-bold mt-4">Can I create freelance pitches?</h3>
+      <p class="muted mt-2">Yes. Select Freelance Pitch to generate a professional message.</p>
+
+      <h3 class="font-bold mt-4">Does OutreachAI send emails?</h3>
+      <p class="muted mt-2">No. It creates message templates that you can copy and send yourself.</p>
+    </section>
   </main>
 
-
-
-  <!-- ==========================================
-       FOOTER
-       ========================================== -->
-
+  <!-- Footer -->
   <footer class="surface border-t mt-10">
-
-    <div class="max-w-7xl mx-auto px-6 py-7">
-
-      <div class="flex flex-col md:flex-row justify-between items-center gap-5">
-
-
-        <!-- Footer Brand -->
-
-        <div class="text-center md:text-left">
-
-          <h3 class="font-bold text-lg">
-            ⚡ OutreachAI
-          </h3>
-
-          <p class="muted text-xs mt-1">
-            Smart Outreach. Better Connections.
-          </p>
-
-        </div>
-
-
-
-        <!-- Footer Links -->
-
-        <div class="flex flex-wrap justify-center gap-6 text-sm">
-
-          <button
-            type="button"
-            data-modal="about"
-            class="muted hover:text-indigo-500"
-          >
-            About Us
-          </button>
-
-          <button
-            type="button"
-            data-modal="privacy"
-            class="muted hover:text-indigo-500"
-          >
-            Privacy Policy
-          </button>
-
-          <button
-            type="button"
-            data-modal="terms"
-            class="muted hover:text-indigo-500"
-          >
-            Terms of Use
-          </button>
-
-        </div>
-
+    <div class="max-w-7xl mx-auto px-6 py-7 text-center">
+      <h3 class="font-bold text-lg">⚡ OutreachAI</h3>
+      <p class="muted text-xs mt-1">Smart Outreach. Better Connections.</p>
+      <div class="flex justify-center gap-6 mt-5 text-sm">
+        <button data-modal="about" class="muted">About Us</button>
+        <button data-modal="privacy" class="muted">Privacy Policy</button>
+        <button data-modal="terms" class="muted">Terms of Use</button>
       </div>
-
-
-
-      <!-- Copyright -->
-
-      <div class="border-t border-slate-700/20 mt-6 pt-5 text-center">
-
-        <p class="muted text-xs">
-          © 2026 OutreachAI. All rights reserved.
-        </p>
-
-      </div>
-
+      <p class="muted text-xs mt-6">© 2026 OutreachAI. All rights reserved.</p>
     </div>
-
   </footer>
 
-
-
-  <!-- ==========================================
-       REUSABLE INFORMATION MODAL
-       ========================================== -->
-
-  <div
-    id="infoModal"
-    class="modal fixed inset-0 z-50 items-center justify-center bg-black/70 p-4"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalTitle"
-  >
-
-    <div class="surface border rounded-2xl p-7 max-w-lg w-full shadow-2xl">
-
+  <!-- Information Modal -->
+  <div id="modal" class="modal fixed inset-0 z-50 items-center justify-center bg-black/70 p-4">
+    <div class="surface border rounded-2xl p-7 max-w-lg w-full">
       <div class="flex justify-between items-center mb-5">
-
-        <h2 id="modalTitle" class="text-xl font-bold">
-          About OutreachAI
-        </h2>
-
-        <button
-          id="closeModal"
-          type="button"
-          class="muted text-2xl"
-          aria-label="Close modal"
-        >
-          ×
-        </button>
-
+        <h2 id="modalTitle" class="text-xl font-bold"></h2>
+        <button id="close" class="text-2xl">×</button>
       </div>
-
-
-      <div
-        id="modalContent"
-        class="text-sm muted leading-7 space-y-3"
-      ></div>
-
-
-      <button
-        id="modalCloseButton"
-        type="button"
-        class="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl mt-6 font-semibold"
-      >
+      <div id="modalText" class="muted text-sm leading-7"></div>
+      <button id="close2" class="w-full bg-indigo-600 text-white py-3 rounded-xl mt-6">
         Close
       </button>
-
     </div>
-
   </div>
 
-
-
-  <!-- ==========================================
-       APPLICATION JAVASCRIPT
-       ========================================== -->
-
   <script>
-
-
-    // ==========================================
-    // 1. APPLICATION CONFIGURATION
-    // ==========================================
-
-    const CONFIG = {
-      appName: 'OutreachAI',
-      defaultTheme: 'dark',
-      successMessage: 'Message copied successfully!'
-    };
-
-
-
-    // ==========================================
-    // 2. DOM ELEMENT REFERENCES
-    // ==========================================
-
-    const elements = {
-
-      welcomeScreen: document.getElementById('welcomeScreen'),
-      startBtn: document.getElementById('startBtn'),
-
-      prospectInput: document.getElementById('prospectName'),
-      goalSelect: document.getElementById('goal'),
-
-      generateBtn: document.getElementById('generateBtn'),
-      copyBtn: document.getElementById('copyBtn'),
-      clearBtn: document.getElementById('clearBtn'),
-
-      output: document.getElementById('output'),
-      badge: document.getElementById('badge'),
-
-      themeToggle: document.getElementById('themeToggle'),
-
-      modal: document.getElementById('infoModal'),
-      modalTitle: document.getElementById('modalTitle'),
-      modalContent: document.getElementById('modalContent'),
-
-      closeModal: document.getElementById('closeModal'),
-      modalCloseButton: document.getElementById('modalCloseButton')
-
-    };
-
-
-
-    // ==========================================
-    // 3. MESSAGE TEMPLATE DATABASE
-    // Six templates for each outreach goal.
-    // ==========================================
-
-    const MESSAGE_TEMPLATES = {
-
-
-      // SALES AND COLD EMAIL
-
+    // Message templates
+    const templates = {
       sales: [
-
-        name => `Hi ${name},\n\nI came across your business and was impressed by what you're building. I help businesses improve their digital workflow and generate better results.\n\nWould you be interested in exploring a potential solution?`,
-
-        name => `Hello ${name},\n\nI noticed your company is growing and thought I could share an idea that may help improve your business operations.\n\nWould you be open to a quick conversation this week?`,
-
-        name => `Hey ${name},\n\nI work with businesses looking to save time and improve productivity through smart digital solutions.\n\nI'd love to show you how we could potentially help your team. Interested?`,
-
-        name => `Hi ${name},\n\nI recently discovered your company and wanted to reach out. I believe there may be an opportunity to help you improve your online business performance.\n\nCan I share a few ideas with you?`,
-
-        name => `Hello ${name},\n\nYour business caught my attention, and I wanted to introduce myself. I specialize in helping businesses find practical digital solutions.\n\nWould you have a few minutes to connect?`,
-
-        name => `Hi ${name},\n\nI have been exploring businesses in your industry and noticed your company. I believe there could be a valuable opportunity for us to work together.\n\nWould you be interested in discussing it?`
-
+        n => `Hi ${n},\n\nI came across your business and was impressed by what you're building. I help businesses improve their digital workflow.\n\nWould you be interested in exploring a potential solution?`,
+        n => `Hello ${n},\n\nI noticed your company and wanted to share an idea that may help improve your business operations.\n\nWould you be open to a quick conversation?`,
+        n => `Hey ${n},\n\nI work with businesses looking to save time and improve productivity through digital solutions.\n\nInterested in learning more?`,
+        n => `Hi ${n},\n\nI recently discovered your company and believe there may be an opportunity to improve your online business performance.\n\nCan I share a few ideas?`,
+        n => `Hello ${n},\n\nYour business caught my attention. I specialize in helping businesses find practical digital solutions.\n\nWould you have a few minutes to connect?`,
+        n => `Hi ${n},\n\nI believe there could be a valuable opportunity for us to work together.\n\nWould you be interested in discussing it?`
       ],
-
-
-
-      // BUSINESS COLLABORATION
-
       collaboration: [
-
-        name => `Hello ${name},\n\nI've been checking out your work and really appreciate your approach. I'm currently building digital products and exploring meaningful business partnerships.\n\nI'd love to connect and discuss possible collaboration opportunities.`,
-
-        name => `Hi ${name},\n\nI think our interests in digital products and technology could create an interesting opportunity.\n\nWould you be interested in connecting and exploring ways we could collaborate?`,
-
-        name => `Hey ${name},\n\nYour recent projects caught my attention. I'm working on some exciting digital ideas and believe there could be potential for a productive partnership.\n\nLet's connect if you're interested!`,
-
-        name => `Hello ${name},\n\nI'm reaching out because I see potential for collaboration between our work. I enjoy connecting with people building innovative digital solutions.\n\nWould you be open to discussing some ideas?`,
-
-        name => `Hi ${name},\n\nI admire the work you're doing and would love to explore whether we could create something valuable together.\n\nPerhaps we could exchange ideas and see where a partnership might lead?`,
-
-        name => `Hey ${name},\n\nI'm always looking to connect with creative professionals and entrepreneurs. Your work looks interesting, and I'd love to explore possible ways we could support each other's projects.\n\nInterested in connecting?`
-
+        n => `Hello ${n},\n\nI've been checking out your work and appreciate your approach. I'm building digital products and exploring business partnerships.\n\nI'd love to connect and discuss possible collaboration opportunities.`,
+        n => `Hi ${n},\n\nI think our interests in digital products and technology could create an interesting opportunity.\n\nWould you be interested in connecting?`,
+        n => `Hey ${n},\n\nYour recent projects caught my attention. I believe there could be potential for a productive partnership.\n\nLet's connect if you're interested!`,
+        n => `Hello ${n},\n\nI'm reaching out because I see potential for collaboration between our work.\n\nWould you be open to discussing some ideas?`,
+        n => `Hi ${n},\n\nI'd love to explore whether we could create something valuable together.\n\nWould you be interested in exchanging ideas?`,
+        n => `Hey ${n},\n\nI enjoy connecting with creative professionals and entrepreneurs. I'd love to explore possible ways we could support each other's projects.\n\nInterested in connecting?`
       ],
-
-
-
-      // FREELANCE PITCH
-
       freelance: [
-
-        name => `Hi ${name},\n\nI came across your business and noticed an opportunity to improve your online presence. I specialize in modern frontend development and clean website interfaces.\n\nI'd love to share a few ideas that could benefit your business.`,
-
-        name => `Hello ${name},\n\nI'm a freelance web developer focused on building responsive, modern and user-friendly websites.\n\nI'd be interested in helping with your next web project. Are you currently looking for development support?`,
-
-        name => `Hey ${name},\n\nI help businesses create professional web experiences with clean designs and smooth functionality.\n\nI'd love to learn about your current requirements and see if I can help with your project.`,
-
-        name => `Hi ${name},\n\nI specialize in creating lightweight web tools, landing pages and modern frontend interfaces.\n\nIf you're planning any website improvements, I'd be happy to discuss how I could contribute.`,
-
-        name => `Hello ${name},\n\nI noticed your company and wanted to introduce my freelance services. I focus on building professional websites that look great across desktop and mobile devices.\n\nWould you be open to discussing a potential project?`,
-
-        name => `Hi ${name},\n\nI'm currently available for freelance web development projects. I can help with frontend interfaces, landing pages and custom web utilities.\n\nIf you need development assistance, I'd love to connect and discuss your requirements.`
-
+        n => `Hi ${n},\n\nI noticed an opportunity to improve your online presence. I specialize in modern frontend development and clean website interfaces.\n\nI'd love to share a few ideas.`,
+        n => `Hello ${n},\n\nI'm a freelance web developer focused on building responsive, modern and user-friendly websites.\n\nAre you currently looking for development support?`,
+        n => `Hey ${n},\n\nI help businesses create professional web experiences with clean designs and smooth functionality.\n\nI'd love to learn about your project.`,
+        n => `Hi ${n},\n\nI specialize in lightweight web tools, landing pages and modern frontend interfaces.\n\nI'd be happy to discuss how I could contribute.`,
+        n => `Hello ${n},\n\nI focus on building professional websites that work across desktop and mobile devices.\n\nWould you be open to discussing a project?`,
+        n => `Hi ${n},\n\nI'm available for web development projects, including frontend interfaces, landing pages and custom web utilities.\n\nI'd love to discuss your requirements.`
       ]
-
     };
 
-
-
-    // ==========================================
-    // 4. INFORMATION MODAL CONTENT
-    // ==========================================
-
-    const MODAL_CONTENT = {
-
-      about: {
-
-        title: 'About OutreachAI',
-
-        paragraphs: [
-
-          'OutreachAI is a simple outreach message generator designed to help freelancers, entrepreneurs and businesses create professional communication faster.',
-
-          'Choose your goal, enter a prospect name and generate personalized message templates in seconds.',
-
-          'Our goal is to make professional outreach simple, accessible and efficient.'
-
-        ]
-
-      },
-
-
-      privacy: {
-
-        title: 'Privacy Policy',
-
-        paragraphs: [
-
-          'OutreachAI processes the prospect name and selected outreach goal locally in your browser to generate messages.',
-
-          'This version does not include an account system or a server-side database for storing generated messages.',
-
-          'Messages are not automatically sent to third parties. When you use the copy feature, your browser clipboard functionality is used.',
-
-          'The website loads Tailwind CSS and Google Fonts from external services. Those providers may process technical connection data.'
-
-        ]
-
-      },
-
-
-      terms: {
-
-        title: 'Terms of Use',
-
-        paragraphs: [
-
-          'By using OutreachAI, you agree to use the tool responsibly and in accordance with applicable laws.',
-
-          'Generated messages are templates. You are responsible for reviewing, editing and verifying their accuracy before use.',
-
-          'Do not use this tool for spam, misleading communication, harassment or unlawful marketing activities.',
-
-          'OutreachAI is provided as-is. We do not guarantee sales, replies, conversions or business results.'
-
-        ]
-
-      }
-
-    };
-
-
-
-    // ==========================================
-    // 5. APPLICATION STATE
-    // ==========================================
-
-    const state = {
-
-      lastMessage: '',
-      currentTheme: CONFIG.defaultTheme
-
-    };
-
-
-
-    // ==========================================
-    // 6. MESSAGE GENERATOR
-    // ==========================================
-
-    function generateMessage() {
-
-      const name = elements.prospectInput.value.trim();
-
-      const goal = elements.goalSelect.value;
-
-
-      // Validate prospect name
-
-      if (!name) {
-
-        elements.output.value =
-          'Please enter a prospect name or company first!';
-
-        elements.badge.classList.add('hidden');
-
-        elements.prospectInput.focus();
-
-        return;
-
-      }
-
-
-      // Get selected goal templates
-
-      const selectedTemplates =
-        MESSAGE_TEMPLATES[goal] || MESSAGE_TEMPLATES.sales;
-
-
-      // Randomly select a template
-
-      let message = '';
-      let attempts = 0;
-
-      do {
-
-        const randomIndex = Math.floor(
-          Math.random() * selectedTemplates.length
-        );
-
-        message = selectedTemplates[randomIndex](name);
-
-        attempts++;
-
-      } while (
-
-        message === state.lastMessage &&
-        selectedTemplates.length > 1 &&
-        attempts < 20
-
-      );
-
-
-      // Save and display the generated message
-
-      state.lastMessage = message;
-
-      elements.output.value = message;
-
-      elements.badge.classList.remove('hidden');
-
-    }
-
-
-
-    // ==========================================
-    // 7. CLIPBOARD MANAGER
-    // ==========================================
-
-    async function copyMessage() {
-
-      const message = elements.output.value;
-
-
-      // Prevent copying empty messages
-
-      if (
-        !message ||
-        message.startsWith('Please enter')
-      ) {
-
-        alert('Please generate a message first!');
-
-        return;
-
-      }
-
-
-      try {
-
-        // Use the modern Clipboard API when available
-
-        if (
-          navigator.clipboard &&
-          window.isSecureContext
-        ) {
-
-          await navigator.clipboard.writeText(message);
-
-        } else {
-
-          // Fallback for older browsers
-
-          elements.output.focus();
-
-          elements.output.select();
-
-          const copied = document.execCommand('copy');
-
-          if (!copied) {
-
-            throw new Error('Clipboard operation failed');
-
-          }
-
-        }
-
-
-        alert(CONFIG.successMessage);
-
-      } catch (error) {
-
-        console.error('Clipboard error:', error);
-
-        alert('Unable to copy. Please copy the message manually.');
-
-      }
-
-    }
-
-
-
-    // ==========================================
-    // 8. CLEAR OUTPUT
-    // ==========================================
-
-    function clearMessage() {
-
-      elements.output.value = '';
-
-      elements.badge.classList.add('hidden');
-
-      state.lastMessage = '';
-
-    }
-
-
-
-    // ==========================================
-    // 9. THEME MANAGER
-    // ==========================================
-
-    function applyTheme(theme) {
-
-      const isDark = theme === 'dark';
-
-      // Update the root HTML class
-
-      document.documentElement.classList.toggle(
-        'dark',
-        isDark
-      );
-
-
-      // Update application state
-
-      state.currentTheme = theme;
-
-
-      // Update toggle button label
-
-      elements.themeToggle.textContent = isDark
-        ? '☀️ Light'
-        : '🌙 Dark';
-
-
-      // Update accessibility label
-
-      elements.themeToggle.setAttribute(
-        'aria-label',
-        `Switch to ${isDark ? 'light' : 'dark'} mode`
-      );
-
-    }
-
-
-    // Switch between light and dark themes
-
-    function toggleTheme() {
-
-      const newTheme = state.currentTheme === 'dark'
-        ? 'light'
-        : 'dark';
-
-      applyTheme(newTheme);
-
-    }
-
-
-
-    // ==========================================
-    // 10. REUSABLE MODAL MANAGER
-    // ==========================================
-
-    function openModal(modalKey) {
-
-      const content = MODAL_CONTENT[modalKey];
-
-
-      // Validate modal request
-
-      if (!content) return;
-
-
-      // Update modal title
-
-      elements.modalTitle.textContent = content.title;
-
-
-      // Remove previous modal content
-
-      elements.modalContent.replaceChildren();
-
-
-      // Add new modal paragraphs safely
-
-      content.paragraphs.forEach(paragraph => {
-
-        const element = document.createElement('p');
-
-        element.textContent = paragraph;
-
-        elements.modalContent.appendChild(element);
-
-      });
-
-
-      // Display the modal
-
-      elements.modal.classList.add('active');
-
-      elements.closeModal.focus();
-
-    }
-
-
-
-    // Close the information modal
-
-    function closeModal() {
-
-      elements.modal.classList.remove('active');
-
-    }
-
-
-
-    // ==========================================
-    // 11. EVENT LISTENERS
-    // ==========================================
-
+    const name = document.getElementById('name');
+    const goal = document.getElementById('goal');
+    const output = document.getElementById('output');
+    const modal = document.getElementById('modal');
 
     // Welcome screen
+    document.getElementById('start').onclick = () =>
+      document.getElementById('welcome').classList.add('hidden');
 
-    elements.startBtn.addEventListener('click', () => {
+    // Generate a message
+    document.getElementById('generate').onclick = () => {
+      const prospect = name.value.trim();
 
-      elements.welcomeScreen.classList.add('hidden-screen');
+      if (!prospect) {
+        alert('Please enter a prospect name or company first.');
+        name.focus();
+        return;
+      }
 
+      const list = templates[goal.value];
+      const selected = list[Math.floor(Math.random() * list.length)];
+      output.value = selected(prospect);
+    };
+
+    // Copy message
+    document.getElementById('copy').onclick = async () => {
+      if (!output.value) {
+        alert('Please generate a message first.');
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+        alert('Message copied successfully!');
+      } catch {
+        output.select();
+        document.execCommand('copy');
+        alert('Message copied!');
+      }
+    };
+
+    // Clear output
+    document.getElementById('clear').onclick = () => {
+      output.value = '';
+    };
+
+    // Dark and light theme
+    document.getElementById('theme').onclick = () => {
+      document.documentElement.classList.toggle('dark');
+      const dark = document.documentElement.classList.contains('dark');
+      document.getElementById('theme').textContent = dark ? '☀️ Light' : '🌙 Dark';
+    };
+
+    // Footer information
+    const info = {
+      about: {
+        title: 'About OutreachAI',
+        text: 'OutreachAI helps freelancers, entrepreneurs and businesses create professional outreach messages quickly.'
+      },
+      privacy: {
+        title: 'Privacy Policy',
+        text: 'Prospect names and selected goals are processed in your browser. This version does not include an account system or server-side database for storing generated messages. External services may process technical connection data.'
+      },
+      terms: {
+        title: 'Terms of Use',
+        text: 'Use generated templates responsibly. Review and edit messages before sending. Do not use this tool for spam, misleading communication or unlawful marketing. Results are not guaranteed.'
+      }
+    };
+
+    document.querySelectorAll('[data-modal]').forEach(button => {
+      button.onclick = () => {
+        const item = info[button.dataset.modal];
+        document.getElementById('modalTitle').textContent = item.title;
+        document.getElementById('modalText').textContent = item.text;
+        modal.classList.add('active');
+      };
     });
 
-
-
-    // Generate outreach message
-
-    elements.generateBtn.addEventListener(
-      'click',
-      generateMessage
-    );
-
-
-
-    // Copy generated message
-
-    elements.copyBtn.addEventListener(
-      'click',
-      copyMessage
-    );
-
-
-
-    // Clear generated message
-
-    elements.clearBtn.addEventListener(
-      'click',
-      clearMessage
-    );
-
-
-
-    // Light and dark theme toggle
-
-    elements.themeToggle.addEventListener(
-      'click',
-      toggleTheme
-    );
-
-
-
-    // Footer navigation using event delegation
-
-    document.querySelector('footer').addEventListener(
-      'click',
-      event => {
-
-        const button = event.target.closest('[data-modal]');
-
-        if (button) {
-
-          openModal(button.dataset.modal);
-
-        }
-
-      }
-    );
-
-
-
-    // Modal close buttons
-
-    elements.closeModal.addEventListener(
-      'click',
-      closeModal
-    );
-
-    elements.modalCloseButton.addEventListener(
-      'click',
-      closeModal
-    );
-
-
-
-    // Close modal when clicking outside
-
-    elements.modal.addEventListener(
-      'click',
-      event => {
-
-        if (event.target === elements.modal) {
-
-          closeModal();
-
-        }
-
-      }
-    );
-
-
-
-    // Close modal using Escape key
-
-    document.addEventListener(
-      'keydown',
-      event => {
-
-        if (
-          event.key === 'Escape' &&
-          elements.modal.classList.contains('active')
-        ) {
-
-          closeModal();
-
-        }
-
-      }
-    );
-
-
-
-    // ==========================================
-    // 12. APPLICATION INITIALIZATION
-    // ==========================================
-
-    function initializeApp() {
-
-      // Apply the default theme
-
-      applyTheme(CONFIG.defaultTheme);
-
-
-      // Display welcome screen on initial load
-
-      elements.welcomeScreen.classList.remove(
-        'hidden-screen'
-      );
-
-
-      // Reset output and badge
-
-      elements.output.value = '';
-
-      elements.badge.classList.add('hidden');
-
+    function closeModal() {
+      modal.classList.remove('active');
     }
 
+    document.getElementById('close').onclick = closeModal;
+    document.getElementById('close2').onclick = closeModal;
 
-    // Initialize application
+    modal.onclick = event => {
+      if (event.target === modal) closeModal();
+    };
 
-    initializeApp();
-
-
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeModal();
+    });
   </script>
-
 </body>
 </html>
