@@ -6,84 +6,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>OutreachAI | Smart Outreach Generator</title>
+  <title>OutreachAI - AI Cold Outreach Generator</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Tailwind Dark Mode Configuration -->
   <script>
     tailwind.config = {
       darkMode: 'class'
     };
   </script>
 
-  <!-- Custom Styles -->
+  <!-- Professional Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ==========================================
+       CUSTOM STYLES
+       ========================================== -->
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
     body {
-      font-family: Inter, Arial, sans-serif;
-      transition: background .3s, color .3s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background .3s ease, color .3s ease;
     }
 
-    .dark body {
+    /* DARK THEME */
+
+    html.dark body {
       background: #020617;
       color: #f1f5f9;
     }
 
-    body:not(.dark) {
-      background: #f1f5f9;
-      color: #0f172a;
-    }
-
-    /* Shared surface styling */
-    .surface {
-      transition: background .3s, border-color .3s;
-    }
-
-    .dark .surface {
+    html.dark .surface {
       background: #0f172a;
       border-color: #1e293b;
     }
 
-    body:not(.dark) .surface {
-      background: #ffffff;
-      border-color: #e2e8f0;
-    }
-
-    /* Form controls */
-    .dark .field {
+    html.dark .field {
       background: #020617;
       border-color: #334155;
       color: #f1f5f9;
     }
 
-    body:not(.dark) .field {
+    html.dark .muted {
+      color: #94a3b8;
+    }
+
+    html.dark .output-panel {
+      background: #020617;
+      border-color: #1e293b;
+    }
+
+    html.dark .theme-button {
+      background: #1e293b;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+
+
+    /* LIGHT THEME */
+
+    html:not(.dark) body {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    html:not(.dark) .surface {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+
+    html:not(.dark) .field {
       background: #f8fafc;
       border-color: #cbd5e1;
       color: #0f172a;
     }
 
-    .dark .muted {
-      color: #94a3b8;
-    }
-
-    body:not(.dark) .muted {
+    html:not(.dark) .muted {
       color: #64748b;
     }
 
-    /* Message output area */
-    .dark .output-panel {
-      background: #020617;
-    }
-
-    body:not(.dark) .output-panel {
+    html:not(.dark) .output-panel {
       background: #f8fafc;
+      border-color: #e2e8f0;
     }
 
-    /* Welcome screen */
+    html:not(.dark) .theme-button {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+
+    /* LIGHT THEME TEXT FIXES */
+
+    html:not(.dark) .text-slate-100,
+    html:not(.dark) .text-slate-200,
+    html:not(.dark) .text-slate-300 {
+      color: #1e293b;
+    }
+
+    html:not(.dark) .text-slate-400,
+    html:not(.dark) .text-slate-500 {
+      color: #64748b;
+    }
+
+
+    /* WELCOME SCREEN */
+
     .welcome-screen {
       position: fixed;
       inset: 0;
@@ -99,7 +141,9 @@
       display: none;
     }
 
-    /* Reusable modal */
+
+    /* INFORMATION MODAL */
+
     .modal {
       display: none;
     }
@@ -107,6 +151,9 @@
     .modal.active {
       display: flex;
     }
+
+
+    /* GENERAL TRANSITIONS */
 
     button,
     input,
@@ -122,16 +169,24 @@
       outline-offset: 2px;
     }
 
-    /* Desktop dashboard layout */
+
+    /* DESKTOP DASHBOARD */
+
     @media (min-width: 768px) {
+
       .dashboard {
         grid-template-columns: .9fr 1.1fr;
       }
+
     }
+
   </style>
+
 </head>
 
+
 <body class="min-h-screen flex flex-col">
+
 
   <!-- ==========================================
        WELCOME SCREEN
@@ -169,6 +224,7 @@
   </section>
 
 
+
   <!-- ==========================================
        HEADER
        ========================================== -->
@@ -178,11 +234,13 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center">
 
       <!-- Brand Logo -->
+
       <div class="flex items-center gap-3">
 
         <div class="text-3xl">⚡</div>
 
         <div>
+
           <h1 class="text-xl font-extrabold tracking-tight">
             <span class="text-indigo-500">Outreach</span>AI
           </h1>
@@ -190,30 +248,27 @@
           <p class="muted text-xs">
             Smart Outreach Generator
           </p>
+
         </div>
 
       </div>
 
-      <!-- Theme Control -->
-      <div class="flex items-center gap-3">
 
-        <span class="hidden sm:inline-flex text-xs text-indigo-500 bg-indigo-500/10 px-3 py-2 rounded-full border border-indigo-500/20">
-          PRO VERSION
-        </span>
+      <!-- Theme Toggle -->
 
-        <button
-          id="themeToggle"
-          class="surface border rounded-lg px-3 py-2 text-sm hover:border-indigo-500"
-          aria-label="Toggle theme"
-        >
-          ☀️ Light
-        </button>
-
-      </div>
+      <button
+        id="themeToggle"
+        class="theme-button border rounded-lg px-4 py-2 text-sm font-semibold hover:border-indigo-500"
+        aria-label="Switch theme"
+        type="button"
+      >
+        ☀️ Light
+      </button>
 
     </div>
 
   </header>
+
 
 
   <!-- ==========================================
@@ -222,9 +277,12 @@
 
   <main class="flex-1 w-full max-w-7xl mx-auto px-5 md:px-8 py-10">
 
+
+    <!-- Page Heading -->
+
     <div class="mb-8">
 
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3 tracking-tight">
         AI Cold Email & Message Generator
       </h2>
 
@@ -235,9 +293,15 @@
     </div>
 
 
+
+    <!-- HORIZONTAL DASHBOARD -->
+
     <div class="dashboard grid grid-cols-1 gap-6">
 
-      <!-- LEFT PANEL: USER INPUT -->
+
+      <!-- ======================================
+           LEFT PANEL: INPUT FORM
+           ====================================== -->
 
       <section class="surface border rounded-2xl p-6 shadow-xl">
 
@@ -248,16 +312,26 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-lg">Message Details</h3>
-            <p class="muted text-xs">Enter your outreach information</p>
+
+            <h3 class="font-bold text-lg">
+              Message Details
+            </h3>
+
+            <p class="muted text-xs">
+              Enter your outreach information
+            </p>
+
           </div>
 
         </div>
 
 
+
         <div class="space-y-5">
 
+
           <!-- Prospect Name -->
+
           <div>
 
             <label
@@ -277,7 +351,9 @@
           </div>
 
 
+
           <!-- Outreach Goal -->
+
           <div>
 
             <label
@@ -292,27 +368,38 @@
               class="field w-full border rounded-xl p-4 text-sm focus:border-indigo-500 focus:outline-none"
             >
 
-              <option value="sales">💼 Sales & Cold Email</option>
+              <option value="sales">
+                💼 Sales & Cold Email
+              </option>
 
-              <option value="collaboration">🤝 Business Collaboration</option>
+              <option value="collaboration">
+                🤝 Business Collaboration
+              </option>
 
-              <option value="freelance">💻 Freelance Pitch</option>
+              <option value="freelance">
+                💻 Freelance Pitch
+              </option>
 
             </select>
 
           </div>
 
 
+
           <!-- Generate Button -->
+
           <button
             id="generateBtn"
+            type="button"
             class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-500/20"
           >
             Generate Random Message 🚀
           </button>
 
 
-          <!-- Generator Information -->
+
+          <!-- Generator Status -->
+
           <div class="surface border rounded-xl p-4">
 
             <div class="flex justify-between items-center">
@@ -328,7 +415,7 @@
             </div>
 
             <p class="muted text-xs mt-2">
-              18 unique message templates across 3 outreach goals.
+              18 unique message templates available across 3 outreach goals.
             </p>
 
           </div>
@@ -338,9 +425,15 @@
       </section>
 
 
-      <!-- RIGHT PANEL: GENERATED MESSAGE -->
+
+      <!-- ======================================
+           RIGHT PANEL: MESSAGE OUTPUT
+           ====================================== -->
 
       <section class="surface border rounded-2xl p-6 shadow-xl flex flex-col">
+
+
+        <!-- Output Heading -->
 
         <div class="flex justify-between items-center mb-6">
 
@@ -351,11 +444,19 @@
             </div>
 
             <div>
-              <h3 class="font-bold text-lg">Generated Message</h3>
-              <p class="muted text-xs">Your personalized outreach content</p>
+
+              <h3 class="font-bold text-lg">
+                Generated Message
+              </h3>
+
+              <p class="muted text-xs">
+                Your personalized outreach content
+              </p>
+
             </div>
 
           </div>
+
 
           <span
             id="badge"
@@ -367,8 +468,10 @@
         </div>
 
 
+
         <!-- Output Textarea -->
-        <div class="output-panel border border-slate-700/20 rounded-xl p-5 flex-1 min-h-[300px]">
+
+        <div class="output-panel border rounded-xl p-5 flex-1 min-h-[300px]">
 
           <textarea
             id="output"
@@ -381,11 +484,14 @@
         </div>
 
 
+
         <!-- Output Actions -->
+
         <div class="grid grid-cols-2 gap-3 mt-5">
 
           <button
             id="copyBtn"
+            type="button"
             class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl"
           >
             📋 Copy Message
@@ -393,6 +499,7 @@
 
           <button
             id="clearBtn"
+            type="button"
             class="surface border hover:border-indigo-500 font-semibold py-3 rounded-xl"
           >
             🗑️ Clear
@@ -412,6 +519,7 @@
   </main>
 
 
+
   <!-- ==========================================
        FOOTER
        ========================================== -->
@@ -421,6 +529,9 @@
     <div class="max-w-7xl mx-auto px-6 py-7">
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-5">
+
+
+        <!-- Footer Brand -->
 
         <div class="text-center md:text-left">
 
@@ -435,18 +546,32 @@
         </div>
 
 
-        <!-- Footer navigation -->
+
+        <!-- Footer Links -->
+
         <div class="flex flex-wrap justify-center gap-6 text-sm">
 
-          <button data-modal="about" class="muted hover:text-indigo-500">
+          <button
+            type="button"
+            data-modal="about"
+            class="muted hover:text-indigo-500"
+          >
             About Us
           </button>
 
-          <button data-modal="privacy" class="muted hover:text-indigo-500">
+          <button
+            type="button"
+            data-modal="privacy"
+            class="muted hover:text-indigo-500"
+          >
             Privacy Policy
           </button>
 
-          <button data-modal="terms" class="muted hover:text-indigo-500">
+          <button
+            type="button"
+            data-modal="terms"
+            class="muted hover:text-indigo-500"
+          >
             Terms of Use
           </button>
 
@@ -454,6 +579,9 @@
 
       </div>
 
+
+
+      <!-- Copyright -->
 
       <div class="border-t border-slate-700/20 mt-6 pt-5 text-center">
 
@@ -468,9 +596,9 @@
   </footer>
 
 
+
   <!-- ==========================================
        REUSABLE INFORMATION MODAL
-       One modal handles all footer information.
        ========================================== -->
 
   <div
@@ -491,6 +619,7 @@
 
         <button
           id="closeModal"
+          type="button"
           class="muted text-2xl"
           aria-label="Close modal"
         >
@@ -508,6 +637,7 @@
 
       <button
         id="modalCloseButton"
+        type="button"
         class="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl mt-6 font-semibold"
       >
         Close
@@ -518,11 +648,13 @@
   </div>
 
 
+
   <!-- ==========================================
        APPLICATION JAVASCRIPT
        ========================================== -->
 
   <script>
+
 
     // ==========================================
     // 1. APPLICATION CONFIGURATION
@@ -535,12 +667,13 @@
     };
 
 
+
     // ==========================================
     // 2. DOM ELEMENT REFERENCES
-    // Centralized references make maintenance easier.
     // ==========================================
 
     const elements = {
+
       welcomeScreen: document.getElementById('welcomeScreen'),
       startBtn: document.getElementById('startBtn'),
 
@@ -559,20 +692,24 @@
       modal: document.getElementById('infoModal'),
       modalTitle: document.getElementById('modalTitle'),
       modalContent: document.getElementById('modalContent'),
+
       closeModal: document.getElementById('closeModal'),
       modalCloseButton: document.getElementById('modalCloseButton')
+
     };
+
 
 
     // ==========================================
     // 3. MESSAGE TEMPLATE DATABASE
-    // Each outreach goal contains six templates.
-    // Functions insert the prospect name dynamically.
+    // Six templates for each outreach goal.
     // ==========================================
 
     const MESSAGE_TEMPLATES = {
 
-      // Sales and cold email templates
+
+      // SALES AND COLD EMAIL
+
       sales: [
 
         name => `Hi ${name},\n\nI came across your business and was impressed by what you're building. I help businesses improve their digital workflow and generate better results.\n\nWould you be interested in exploring a potential solution?`,
@@ -590,7 +727,9 @@
       ],
 
 
-      // Business collaboration templates
+
+      // BUSINESS COLLABORATION
+
       collaboration: [
 
         name => `Hello ${name},\n\nI've been checking out your work and really appreciate your approach. I'm currently building digital products and exploring meaningful business partnerships.\n\nI'd love to connect and discuss possible collaboration opportunities.`,
@@ -608,7 +747,9 @@
       ],
 
 
-      // Freelance service pitch templates
+
+      // FREELANCE PITCH
+
       freelance: [
 
         name => `Hi ${name},\n\nI came across your business and noticed an opportunity to improve your online presence. I specialize in modern frontend development and clean website interfaces.\n\nI'd love to share a few ideas that could benefit your business.`,
@@ -628,40 +769,55 @@
     };
 
 
+
     // ==========================================
     // 4. INFORMATION MODAL CONTENT
-    // All footer content is managed in one object.
     // ==========================================
 
     const MODAL_CONTENT = {
 
       about: {
+
         title: 'About OutreachAI',
+
         paragraphs: [
+
           'OutreachAI is a simple outreach message generator designed to help freelancers, entrepreneurs and businesses create professional communication faster.',
 
           'Choose your goal, enter a prospect name and generate personalized message templates in seconds.',
 
           'Our goal is to make professional outreach simple, accessible and efficient.'
+
         ]
+
       },
 
+
       privacy: {
+
         title: 'Privacy Policy',
+
         paragraphs: [
+
           'OutreachAI processes the prospect name and selected outreach goal locally in your browser to generate messages.',
 
           'This version does not include an account system or a server-side database for storing generated messages.',
 
           'Messages are not automatically sent to third parties. When you use the copy feature, your browser clipboard functionality is used.',
 
-          'The website loads Tailwind CSS from an external CDN. That provider may process technical connection data.'
+          'The website loads Tailwind CSS and Google Fonts from external services. Those providers may process technical connection data.'
+
         ]
+
       },
 
+
       terms: {
+
         title: 'Terms of Use',
+
         paragraphs: [
+
           'By using OutreachAI, you agree to use the tool responsibly and in accordance with applicable laws.',
 
           'Generated messages are templates. You are responsible for reviewing, editing and verifying their accuracy before use.',
@@ -669,50 +825,63 @@
           'Do not use this tool for spam, misleading communication, harassment or unlawful marketing activities.',
 
           'OutreachAI is provided as-is. We do not guarantee sales, replies, conversions or business results.'
+
         ]
+
       }
 
     };
 
 
+
     // ==========================================
     // 5. APPLICATION STATE
-    // Stores temporary information during use.
     // ==========================================
 
     const state = {
+
       lastMessage: '',
       currentTheme: CONFIG.defaultTheme
+
     };
+
 
 
     // ==========================================
     // 6. MESSAGE GENERATOR
-    // Selects a random template without immediately
-    // repeating the previous generated message.
     // ==========================================
 
     function generateMessage() {
 
       const name = elements.prospectInput.value.trim();
+
       const goal = elements.goalSelect.value;
 
+
       // Validate prospect name
+
       if (!name) {
+
         elements.output.value =
           'Please enter a prospect name or company first!';
 
         elements.badge.classList.add('hidden');
+
         elements.prospectInput.focus();
 
         return;
+
       }
 
-      // Get templates for the selected goal
+
+      // Get selected goal templates
+
       const selectedTemplates =
         MESSAGE_TEMPLATES[goal] || MESSAGE_TEMPLATES.sales;
 
-      // Generate a random message
+
+      // Randomly select a template
+
       let message = '';
       let attempts = 0;
 
@@ -727,60 +896,78 @@
         attempts++;
 
       } while (
+
         message === state.lastMessage &&
         selectedTemplates.length > 1 &&
         attempts < 20
+
       );
 
-      // Save the latest generated message
+
+      // Save and display the generated message
+
       state.lastMessage = message;
 
-      // Display the generated content
       elements.output.value = message;
+
       elements.badge.classList.remove('hidden');
 
     }
 
 
+
     // ==========================================
     // 7. CLIPBOARD MANAGER
-    // Copies the generated message to the clipboard.
-    // Includes a fallback for unsupported browsers.
     // ==========================================
 
     async function copyMessage() {
 
       const message = elements.output.value;
 
-      // Prevent copying empty or validation messages
+
+      // Prevent copying empty messages
+
       if (
         !message ||
         message.startsWith('Please enter')
       ) {
+
         alert('Please generate a message first!');
+
         return;
+
       }
+
 
       try {
 
-        // Modern clipboard API
-        if (navigator.clipboard && window.isSecureContext) {
+        // Use the modern Clipboard API when available
+
+        if (
+          navigator.clipboard &&
+          window.isSecureContext
+        ) {
 
           await navigator.clipboard.writeText(message);
 
         } else {
 
           // Fallback for older browsers
+
           elements.output.focus();
+
           elements.output.select();
 
           const copied = document.execCommand('copy');
 
           if (!copied) {
+
             throw new Error('Clipboard operation failed');
+
           }
 
         }
+
 
         alert(CONFIG.successMessage);
 
@@ -795,14 +982,15 @@
     }
 
 
+
     // ==========================================
     // 8. CLEAR OUTPUT
-    // Resets the generated message and its status.
     // ==========================================
 
     function clearMessage() {
 
       elements.output.value = '';
+
       elements.badge.classList.add('hidden');
 
       state.lastMessage = '';
@@ -810,50 +998,84 @@
     }
 
 
+
     // ==========================================
     // 9. THEME MANAGER
-    // Switches between light and dark themes.
     // ==========================================
+
+    function applyTheme(theme) {
+
+      const isDark = theme === 'dark';
+
+      // Update the root HTML class
+
+      document.documentElement.classList.toggle(
+        'dark',
+        isDark
+      );
+
+
+      // Update application state
+
+      state.currentTheme = theme;
+
+
+      // Update toggle button label
+
+      elements.themeToggle.textContent = isDark
+        ? '☀️ Light'
+        : '🌙 Dark';
+
+
+      // Update accessibility label
+
+      elements.themeToggle.setAttribute(
+        'aria-label',
+        `Switch to ${isDark ? 'light' : 'dark'} mode`
+      );
+
+    }
+
+
+    // Switch between light and dark themes
 
     function toggleTheme() {
 
-      const isDark = document.documentElement.classList.toggle('dark');
+      const newTheme = state.currentTheme === 'dark'
+        ? 'light'
+        : 'dark';
 
-      state.currentTheme = isDark ? 'dark' : 'light';
-
-      updateThemeButton();
-
-    }
-
-
-    // Keeps the theme button label synchronized
-    function updateThemeButton() {
-
-      elements.themeToggle.textContent =
-        state.currentTheme === 'dark'
-          ? '☀️ Light'
-          : '🌙 Dark';
+      applyTheme(newTheme);
 
     }
+
 
 
     // ==========================================
-    // 10. MODAL MANAGER
-    // One reusable modal handles all information pages.
+    // 10. REUSABLE MODAL MANAGER
     // ==========================================
 
     function openModal(modalKey) {
 
       const content = MODAL_CONTENT[modalKey];
 
-      // Ignore unknown modal requests
+
+      // Validate modal request
+
       if (!content) return;
 
-      // Update modal heading
+
+      // Update modal title
+
       elements.modalTitle.textContent = content.title;
 
-      // Build modal paragraphs safely using textContent
+
+      // Remove previous modal content
+
       elements.modalContent.replaceChildren();
+
+
+      // Add new modal paragraphs safely
 
       content.paragraphs.forEach(paragraph => {
 
@@ -865,7 +1087,9 @@
 
       });
 
+
       // Display the modal
+
       elements.modal.classList.add('active');
 
       elements.closeModal.focus();
@@ -873,7 +1097,9 @@
     }
 
 
-    // Reusable modal closing function
+
+    // Close the information modal
+
     function closeModal() {
 
       elements.modal.classList.remove('active');
@@ -881,12 +1107,14 @@
     }
 
 
+
     // ==========================================
     // 11. EVENT LISTENERS
-    // All user interactions are connected here.
     // ==========================================
 
+
     // Welcome screen
+
     elements.startBtn.addEventListener('click', () => {
 
       elements.welcomeScreen.classList.add('hidden-screen');
@@ -894,47 +1122,64 @@
     });
 
 
-    // Generate message
+
+    // Generate outreach message
+
     elements.generateBtn.addEventListener(
       'click',
       generateMessage
     );
 
 
-    // Copy message
+
+    // Copy generated message
+
     elements.copyBtn.addEventListener(
       'click',
       copyMessage
     );
 
 
-    // Clear message
+
+    // Clear generated message
+
     elements.clearBtn.addEventListener(
       'click',
       clearMessage
     );
 
 
-    // Toggle theme
+
+    // Light and dark theme toggle
+
     elements.themeToggle.addEventListener(
       'click',
       toggleTheme
     );
 
 
-    // Footer modal navigation using event delegation
-    document.querySelector('footer').addEventListener('click', event => {
 
-      const button = event.target.closest('[data-modal]');
+    // Footer navigation using event delegation
 
-      if (button) {
-        openModal(button.dataset.modal);
+    document.querySelector('footer').addEventListener(
+      'click',
+      event => {
+
+        const button = event.target.closest('[data-modal]');
+
+        if (button) {
+
+          openModal(button.dataset.modal);
+
+        }
+
       }
+    );
 
-    });
 
 
     // Modal close buttons
+
     elements.closeModal.addEventListener(
       'click',
       closeModal
@@ -946,50 +1191,64 @@
     );
 
 
-    // Close modal when clicking outside its content
-    elements.modal.addEventListener('click', event => {
 
-      if (event.target === elements.modal) {
-        closeModal();
+    // Close modal when clicking outside
+
+    elements.modal.addEventListener(
+      'click',
+      event => {
+
+        if (event.target === elements.modal) {
+
+          closeModal();
+
+        }
+
       }
+    );
 
-    });
 
 
-    // Close modal using the Escape key
-    document.addEventListener('keydown', event => {
+    // Close modal using Escape key
 
-      if (
-        event.key === 'Escape' &&
-        elements.modal.classList.contains('active')
-      ) {
-        closeModal();
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (
+          event.key === 'Escape' &&
+          elements.modal.classList.contains('active')
+        ) {
+
+          closeModal();
+
+        }
+
       }
+    );
 
-    });
 
 
     // ==========================================
     // 12. APPLICATION INITIALIZATION
-    // Runs once when the page loads.
     // ==========================================
 
     function initializeApp() {
 
       // Apply the default theme
-      document.documentElement.classList.toggle(
-        'dark',
-        CONFIG.defaultTheme === 'dark'
+
+      applyTheme(CONFIG.defaultTheme);
+
+
+      // Display welcome screen on initial load
+
+      elements.welcomeScreen.classList.remove(
+        'hidden-screen'
       );
 
-      state.currentTheme = CONFIG.defaultTheme;
 
-      updateThemeButton();
+      // Reset output and badge
 
-      // Start with the welcome screen visible
-      elements.welcomeScreen.classList.remove('hidden-screen');
-
-      // Initialize an empty output
       elements.output.value = '';
 
       elements.badge.classList.add('hidden');
@@ -997,8 +1256,10 @@
     }
 
 
-    // Start the application
+    // Initialize application
+
     initializeApp();
+
 
   </script>
 
