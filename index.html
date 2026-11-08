@@ -1,182 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free AI Cold Email & Outreach Message Generator | OutreachAI</title>
-  <meta name="description" content="Create professional cold emails and outreach messages for sales, freelance work, and business collaborations with OutreachAI's free message generator.">
-  <meta name="keywords" content="cold email generator, outreach message generator, freelance email generator, sales email, business outreach">
+  <title>OutreachAI - Free Cold Email & Outreach Message Generator</title>
+  <meta name="description" content="Create professional cold emails and outreach messages for sales, freelance opportunities, and business collaborations with OutreachAI.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ai-outreach-web-blue.vercel.app/">
 
-  <meta property="og:title" content="OutreachAI - Free Cold Email Generator">
-  <meta property="og:description" content="Generate professional outreach messages for sales, freelance work, and collaborations.">
+  <meta property="og:title" content="OutreachAI - Free Message Generator">
+  <meta property="og:description" content="Create professional outreach messages in seconds.">
   <meta property="og:url" content="https://ai-outreach-web-blue.vercel.app/">
   <meta property="og:type" content="website">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="OutreachAI - Free Cold Email Generator">
-  <meta name="twitter:description" content="Create professional outreach messages in seconds.">
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Inter", "system-ui", "sans-serif"]
-          }
-        }
-      }
-    };
+    tailwind.config = { darkMode: "class" };
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-body {
-  background: #f8fafc;
-  color: #0f172a;
-  transition: background .2s, color .2s;
-}
-
-.dark body {
-  background: #080d18;
-  color: #e5e7eb;
-}
-  body {
-      background: #f8fafc;
-      color: #0f172a;
-    }
-
-    .dark .surface {
-      background: #111827;
-      border-color: #263244;
-    }
-
-    .surface {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-    }
-
-    .dark .muted { color: #9ca3af; }
-    .muted { color: #64748b; }
-
-    .dark input,
-    .dark select,
-    .dark textarea {
-      background: #0b1220;
-      border-color: #334155;
-      color: #f8fafc;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 12px 14px;
-      outline: none;
-      background: #fff;
-      color: #0f172a;
-      font-size: 14px;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59,130,246,.12);
-    }
-
-    button { transition: .18s ease; }
-
-    .primary-btn {
-      background: #2563eb;
-      color: white;
-    }
-
-    .primary-btn:hover { background: #1d4ed8; }
-
-    .secondary-btn {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-
-    .dark .secondary-btn {
-      background: #263244;
-      color: #e5e7eb;
-    }
-
-    .secondary-btn:hover { opacity: .82; }
-
-    .ad-placeholder {
-      min-height: 100px;
-      border: 1px dashed #94a3b8;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #94a3b8;
-      background: rgba(148,163,184,.04);
-      font-size: 12px;
-      padding: 16px;
-    }
-
-    .dark .ad-placeholder {
-      border-color: #475569;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: rgba(2,6,23,.75);
-      padding: 18px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal.active { display: flex; }
-
-    .modal-content {
-      width: 100%;
-      max-width: 720px;
-      max-height: 85vh;
-      overflow-y: auto;
-    }
-
-    .nav-link:hover { color: #3b82f6; }
-
-    .result-box {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      line-height: 1.8;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 17px 0;
-    }
-
-    .dark .faq-item { border-color: #263244; }
-
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .faq-item p {
-      margin-top: 10px;
-      line-height: 1.8;
-    }
-  </style>
 
   <script type="application/ld+json">
   {
@@ -184,7 +30,7 @@ body {
     "@type": "WebApplication",
     "name": "OutreachAI",
     "url": "https://ai-outreach-web-blue.vercel.app/",
-    "description": "A free online tool for generating cold emails and professional outreach messages.",
+    "description": "A free online cold email and outreach message generator.",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Any",
     "offers": {
@@ -194,6 +40,175 @@ body {
     }
   }
   </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    html.dark body {
+      background: #080d18;
+      color: #e5e7eb;
+    }
+
+    .surface {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      transition: background .25s ease, border-color .25s ease;
+    }
+
+    html.dark .surface {
+      background: #111827;
+      border-color: #293548;
+    }
+
+    .muted {
+      color: #64748b;
+    }
+
+    html.dark .muted {
+      color: #a1a1aa;
+    }
+
+    .field {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #0f172a;
+      outline: none;
+      font-size: 14px;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    html.dark .field {
+      background: #0b1220;
+      color: #f8fafc;
+      border-color: #374151;
+    }
+
+    .field:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+    }
+
+    .primary-btn {
+      background: #2563eb;
+      color: white;
+      transition: background .2s, transform .2s;
+    }
+
+    .primary-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .secondary-btn {
+      background: #e2e8f0;
+      color: #0f172a;
+      transition: background .2s;
+    }
+
+    .secondary-btn:hover {
+      background: #cbd5e1;
+    }
+
+    html.dark .secondary-btn {
+      background: #263244;
+      color: #f8fafc;
+    }
+
+    html.dark .secondary-btn:hover {
+      background: #344256;
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .ad-placeholder {
+      min-height: 100px;
+      border: 1px dashed #94a3b8;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 12px;
+      padding: 15px;
+    }
+
+    .result-box {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.85;
+    }
+
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    html.dark .faq-item {
+      border-color: #293548;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .faq-item p {
+      margin-top: 12px;
+      line-height: 1.8;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(2,6,23,.78);
+      padding: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .nav-link:hover {
+      color: #3b82f6;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -202,59 +217,62 @@ body {
   <header class="border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
 
-      <a href="#" class="flex items-center gap-2 font-extrabold text-xl tracking-tight">
-        <span class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center">⚡</span>
+      <a href="#" class="flex items-center gap-2 font-extrabold text-xl">
+        <span class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">⚡</span>
         <span>Outreach<span class="text-blue-500">AI</span></span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium muted">
-        <a class="nav-link" href="#generator">Generator</a>
-        <a class="nav-link" href="#how-it-works">How It Works</a>
-        <a class="nav-link" href="#guides">Guides</a>
-        <a class="nav-link" href="#faq">FAQ</a>
+      <nav class="hidden md:flex gap-6 text-sm font-semibold muted">
+        <a href="#generator" class="nav-link">Generator</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#guides" class="nav-link">Guides</a>
+        <a href="#faq" class="nav-link">FAQ</a>
       </nav>
 
-      <button id="themeToggle" class="surface rounded-xl px-4 py-2 text-sm font-semibold">
-        ☾ Theme
+      <button
+        id="themeToggle"
+        type="button"
+        class="surface rounded-xl px-4 py-2 text-sm font-semibold"
+        aria-label="Change color theme">
+        ☾ Dark
       </button>
 
     </div>
   </header>
 
 
-  <!-- HERO -->
   <main>
-    <section class="max-w-5xl mx-auto px-5 pt-16 pb-10 text-center">
 
-      <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 mb-6">
-        ⚡ Free Professional Outreach Tool
-      </div>
+    <!-- HERO -->
+    <section class="max-w-5xl mx-auto px-5 pt-16 pb-12 text-center">
 
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+      <span class="inline-block rounded-full bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 px-4 py-2 text-xs font-bold mb-6">
+        ⚡ FREE PROFESSIONAL OUTREACH TOOL
+      </span>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
         Write Better Outreach
         <span class="text-blue-500">Messages</span>
         in Seconds
       </h1>
 
       <p class="muted max-w-2xl mx-auto mt-6 leading-8">
-        Create personalized cold emails and professional messages for sales,
+        Create professional cold emails and outreach messages for sales,
         freelance opportunities, and business collaborations.
-        Start with a simple message and make your outreach more effective.
+        Make your first impression count with a clear and personalized draft.
       </p>
 
-      <a href="#generator" class="inline-block primary-btn rounded-xl px-7 py-3 mt-8 font-semibold">
+      <a href="#generator" class="inline-block primary-btn rounded-xl px-7 py-3 mt-8 font-bold">
         Start Creating Free →
       </a>
 
     </section>
 
 
-    <!-- TOP AD PLACEHOLDER -->
+    <!-- AD SPACE -->
     <section class="max-w-5xl mx-auto px-5 mb-10">
       <div class="ad-placeholder">
-        Advertisement
-        <br>
-        Ad space — ads will appear here after AdSense approval and setup.
+        Advertisement space
       </div>
     </section>
 
@@ -264,36 +282,36 @@ body {
 
       <div class="text-center mb-8">
         <h2 class="text-3xl font-extrabold">Outreach Message Generator</h2>
-        <p class="muted mt-3">Enter a few details to create your message.</p>
+        <p class="muted mt-3">Enter your details and generate a message.</p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-6">
 
-        <!-- INPUT PANEL -->
+        <!-- FORM -->
         <div class="surface rounded-2xl p-6 shadow-sm">
 
-          <h3 class="font-bold text-lg mb-6">Your Message Details</h3>
+          <h3 class="text-lg font-bold mb-6">Your Message Details</h3>
 
           <div class="space-y-5">
 
             <div>
               <label for="yourName" class="block text-sm font-semibold mb-2">Your Name</label>
-              <input id="yourName" type="text" placeholder="e.g. Alex">
+              <input id="yourName" class="field" type="text" placeholder="e.g. Alex">
             </div>
 
             <div>
               <label for="prospectName" class="block text-sm font-semibold mb-2">Recipient Name</label>
-              <input id="prospectName" type="text" placeholder="e.g. John">
+              <input id="prospectName" class="field" type="text" placeholder="e.g. John">
             </div>
 
             <div>
               <label for="companyName" class="block text-sm font-semibold mb-2">Company / Business</label>
-              <input id="companyName" type="text" placeholder="e.g. Bright Studio">
+              <input id="companyName" class="field" type="text" placeholder="e.g. Bright Studio">
             </div>
 
             <div>
               <label for="goal" class="block text-sm font-semibold mb-2">Outreach Goal</label>
-              <select id="goal">
+              <select id="goal" class="field">
                 <option value="sales">Sales Outreach</option>
                 <option value="freelance">Freelance Opportunity</option>
                 <option value="collaboration">Business Collaboration</option>
@@ -302,7 +320,7 @@ body {
 
             <div>
               <label for="tone" class="block text-sm font-semibold mb-2">Message Tone</label>
-              <select id="tone">
+              <select id="tone" class="field">
                 <option value="professional">Professional</option>
                 <option value="friendly">Friendly</option>
                 <option value="confident">Confident</option>
@@ -312,7 +330,7 @@ body {
 
             <div>
               <label for="length" class="block text-sm font-semibold mb-2">Message Length</label>
-              <select id="length">
+              <select id="length" class="field">
                 <option value="short">Short</option>
                 <option value="medium" selected>Medium</option>
                 <option value="long">Detailed</option>
@@ -320,15 +338,15 @@ body {
             </div>
 
             <div>
-              <label for="details" class="block text-sm font-semibold mb-2">What are you offering? (Optional)</label>
-              <textarea id="details" rows="3" placeholder="Describe your service, product, or collaboration idea..."></textarea>
+              <label for="details" class="block text-sm font-semibold mb-2">Your Service / Offer (Optional)</label>
+              <textarea id="details" class="field" rows="3" placeholder="Describe your service, product, or idea..."></textarea>
             </div>
 
-            <button id="generateBtn" class="primary-btn w-full rounded-xl py-3.5 font-bold">
+            <button id="generateBtn" type="button" class="primary-btn w-full rounded-xl py-3.5 font-bold">
               ⚡ Generate My Message
             </button>
 
-            <button id="clearBtn" class="secondary-btn w-full rounded-xl py-3 font-semibold">
+            <button id="clearBtn" type="button" class="secondary-btn w-full rounded-xl py-3 font-semibold">
               Clear All Fields
             </button>
 
@@ -336,46 +354,52 @@ body {
         </div>
 
 
-        <!-- RESULT PANEL -->
+        <!-- OUTPUT -->
         <div class="surface rounded-2xl p-6 shadow-sm flex flex-col">
 
           <div class="flex items-center justify-between gap-3 mb-5">
-            <h3 class="font-bold text-lg">Your Generated Message</h3>
-            <span class="text-xs font-semibold text-blue-500">LIVE RESULT</span>
+            <h3 class="text-lg font-bold">Your Generated Message</h3>
+            <span class="text-xs font-bold text-blue-500">YOUR DRAFT</span>
           </div>
 
           <div class="flex-1 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-5 min-h-80">
-            <div id="emptyState" class="h-full min-h-64 flex flex-col items-center justify-center text-center">
+
+            <div id="emptyState" class="min-h-64 flex flex-col items-center justify-center text-center">
               <div class="text-4xl mb-4">✉️</div>
               <h4 class="font-bold">Your message will appear here</h4>
-              <p class="muted text-sm mt-2 max-w-xs">
+              <p class="muted text-sm mt-2">
                 Fill in your details and click Generate My Message.
               </p>
             </div>
 
             <div id="resultArea" class="hidden">
-              <div class="text-xs font-bold text-blue-500 mb-3">GENERATED MESSAGE</div>
+              <p class="text-xs font-bold text-blue-500 mb-3">GENERATED MESSAGE</p>
               <div id="resultText" class="result-box text-sm"></div>
             </div>
+
           </div>
 
           <div class="grid grid-cols-2 gap-3 mt-5">
-            <button id="copyBtn" class="secondary-btn rounded-xl py-3 font-semibold" disabled>
+
+            <button id="copyBtn" type="button" class="secondary-btn rounded-xl py-3 font-semibold" disabled>
               Copy Message
             </button>
-            <button id="regenerateBtn" class="primary-btn rounded-xl py-3 font-semibold" disabled>
+
+            <button id="regenerateBtn" type="button" class="primary-btn rounded-xl py-3 font-semibold" disabled>
               Regenerate
             </button>
+
           </div>
 
-          <p id="statusMessage" class="text-xs muted mt-3 text-center" aria-live="polite"></p>
+          <p id="statusMessage" class="muted text-xs text-center mt-4" aria-live="polite"></p>
 
-          <p class="text-xs muted mt-4 leading-6">
-            Note: Messages are generated from built-in templates in your browser.
-            Review and personalize each message before sending it.
+          <p class="muted text-xs leading-6 mt-3">
+            Messages are created using built-in templates in your browser.
+            Always review and personalize a draft before sending it.
           </p>
 
         </div>
+
       </div>
     </section>
 
@@ -385,7 +409,7 @@ body {
 
       <div class="text-center mb-10">
         <h2 class="text-3xl font-extrabold">How OutreachAI Works</h2>
-        <p class="muted mt-3">Create a message in three simple steps.</p>
+        <p class="muted mt-3">Three simple steps to create your message.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-5">
@@ -394,8 +418,7 @@ body {
           <div class="text-3xl mb-4">✍️</div>
           <h3 class="font-bold text-lg">1. Enter Your Details</h3>
           <p class="muted text-sm mt-3 leading-7">
-            Add your name, recipient name, company, outreach goal, and any
-            information about your offer.
+            Add your name, recipient, company, and the purpose of your message.
           </p>
         </article>
 
@@ -403,8 +426,7 @@ body {
           <div class="text-3xl mb-4">⚙️</div>
           <h3 class="font-bold text-lg">2. Customize Your Message</h3>
           <p class="muted text-sm mt-3 leading-7">
-            Choose a tone and message length that suits your communication
-            style and purpose.
+            Choose your preferred tone and message length to create a suitable draft.
           </p>
         </article>
 
@@ -412,8 +434,7 @@ body {
           <div class="text-3xl mb-4">📩</div>
           <h3 class="font-bold text-lg">3. Copy and Personalize</h3>
           <p class="muted text-sm mt-3 leading-7">
-            Copy the generated draft, review it, add relevant details, and
-            decide whether it is appropriate to send.
+            Copy the result, review its details, and personalize it before sending.
           </p>
         </article>
 
@@ -421,77 +442,72 @@ body {
     </section>
 
 
-    <!-- MIDDLE AD PLACEHOLDER -->
+    <!-- SECOND AD SPACE -->
     <section class="max-w-5xl mx-auto px-5 pb-12">
-      <div class="ad-placeholder">
-        Advertisement
-        <br>
-        Ad space — configure this after AdSense approval.
-      </div>
+      <div class="ad-placeholder">Advertisement space</div>
     </section>
 
 
-    <!-- EDUCATIONAL CONTENT -->
+    <!-- GUIDES -->
     <section id="guides" class="max-w-4xl mx-auto px-5 py-12">
 
       <div class="text-center mb-10">
         <h2 class="text-3xl font-extrabold">A Beginner's Guide to Better Outreach</h2>
-        <p class="muted mt-3">Learn how to write clear, relevant, and respectful messages.</p>
+        <p class="muted mt-3">Learn how to communicate clearly and professionally.</p>
       </div>
 
       <article class="surface rounded-2xl p-6 md:p-8 mb-6">
         <h3 class="text-xl font-bold mb-3">What Is Cold Email Outreach?</h3>
-        <p class="muted leading-8 text-sm">
-          Cold email outreach is the process of contacting someone who has not
-          previously communicated with you or your business. It is commonly
-          used by freelancers, founders, sales teams, and professionals to
-          introduce a relevant service, product, or business idea.
+        <p class="muted text-sm leading-8">
+          Cold email outreach means contacting someone who has not previously
+          communicated with you or your business. Freelancers, founders,
+          sales teams, and professionals use it to introduce relevant services,
+          products, or business ideas.
         </p>
-        <p class="muted leading-8 text-sm mt-3">
-          A useful cold email should explain who you are, why you are contacting
+        <p class="muted text-sm leading-8 mt-3">
+          A useful message should explain who you are, why you are contacting
           the recipient, and what value your message may offer. Avoid sending
-          generic messages to large lists of unrelated people.
+          the same generic message to unrelated people.
         </p>
       </article>
 
       <article class="surface rounded-2xl p-6 md:p-8 mb-6">
         <h3 class="text-xl font-bold mb-3">How to Write a Professional Cold Email</h3>
-        <p class="muted leading-8 text-sm">
-          Start with a clear subject line that accurately describes your
-          purpose. Address the recipient by name when you know it. Keep your
-          introduction brief and explain why the message is relevant to them.
+        <p class="muted text-sm leading-8">
+          Start with a clear subject line. Address the recipient by name when
+          possible. Keep your introduction brief and explain why your message
+          is relevant to them.
         </p>
-        <p class="muted leading-8 text-sm mt-3">
-          Describe your offer honestly. Instead of making broad promises,
-          explain the specific service or result you can provide. Finish with
-          one simple question or next step, such as asking whether the recipient
+        <p class="muted text-sm leading-8 mt-3">
+          Describe your offer honestly and avoid unsupported claims. Finish
+          with one simple next step, such as asking whether the recipient
           would be interested in learning more.
         </p>
       </article>
 
       <article class="surface rounded-2xl p-6 md:p-8 mb-6">
         <h3 class="text-xl font-bold mb-3">Cold Email Tips for Freelancers</h3>
-        <p class="muted leading-8 text-sm">
-          Freelancers can use outreach to introduce their skills to potential
-          clients. Before contacting a business, research its work and identify
-          a genuine reason your service could be useful.
+        <p class="muted text-sm leading-8">
+          Before contacting a business, research its work and identify a
+          genuine reason your service may be useful. Include a relevant
+          portfolio sample when appropriate.
         </p>
-        <p class="muted leading-8 text-sm mt-3">
-          Include a relevant portfolio sample when appropriate. Be transparent
-          about your experience, avoid claiming results you cannot demonstrate,
-          and respect recipients who do not wish to receive further messages.
+        <p class="muted text-sm leading-8 mt-3">
+          Be transparent about your skills and experience. Respect people
+          who do not want further messages, and follow the communication
+          rules that apply to your location and recipients.
         </p>
       </article>
 
       <article class="surface rounded-2xl p-6 md:p-8">
-        <h3 class="text-xl font-bold mb-3">Common Cold Email Mistakes to Avoid</h3>
+        <h3 class="text-xl font-bold mb-3">Common Cold Email Mistakes</h3>
         <ul class="muted text-sm leading-8 list-disc pl-5">
-          <li>Using vague or misleading subject lines.</li>
+          <li>Using misleading subject lines.</li>
           <li>Sending the same generic message to everyone.</li>
           <li>Writing long paragraphs without a clear purpose.</li>
-          <li>Making unsupported claims about your product or service.</li>
-          <li>Ignoring the recipient's preferences or follow-up requests.</li>
-          <li>Forgetting to proofread before sending.</li>
+          <li>Making claims you cannot support.</li>
+          <li>Ignoring recipients' communication preferences.</li>
+          <li>Forgetting to proofread your message.</li>
         </ul>
       </article>
 
@@ -503,7 +519,7 @@ body {
 
       <div class="text-center mb-8">
         <h2 class="text-3xl font-extrabold">Frequently Asked Questions</h2>
-        <p class="muted mt-3">Answers to common questions about OutreachAI.</p>
+        <p class="muted mt-3">Common questions about OutreachAI.</p>
       </div>
 
       <div class="surface rounded-2xl px-6">
@@ -511,51 +527,50 @@ body {
         <details class="faq-item">
           <summary>Is OutreachAI free to use?</summary>
           <p class="muted text-sm">
-            Yes. The message generator on this page is free to use. No payment
-            is required to generate a message.
+            Yes. The message generator is free to use. No payment is required
+            to create a message draft.
           </p>
         </details>
 
         <details class="faq-item">
           <summary>Does OutreachAI use an AI API?</summary>
           <p class="muted text-sm">
-            No. The current version uses built-in message templates and
-            JavaScript in your browser. It does not connect to an AI API.
+            No. This version uses built-in templates and JavaScript in your
+            browser. It does not connect to an AI API.
           </p>
         </details>
 
         <details class="faq-item">
           <summary>Can I generate freelance outreach messages?</summary>
           <p class="muted text-sm">
-            Yes. Select Freelance Opportunity in the outreach goal menu to
-            generate a freelance introduction draft.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Can I use the generated message for business?</summary>
-          <p class="muted text-sm">
-            You can use the generated text as a starting draft. Review it,
-            personalize it, and make sure it is accurate and appropriate
-            before sending.
+            Yes. Select Freelance Opportunity from the outreach goal menu
+            to create a freelance introduction draft.
           </p>
         </details>
 
         <details class="faq-item">
           <summary>Are my form details stored?</summary>
           <p class="muted text-sm">
-            This version does not send form details to an OutreachAI server
-            or save them in a database. The message is generated locally
-            in your browser. Third-party services, such as advertising
-            providers if enabled, may use their own technologies.
+            The current generator does not send your form details to an
+            OutreachAI server or store them in a database. The draft is
+            generated locally in your browser. Third-party services may
+            have their own data practices.
           </p>
         </details>
 
         <details class="faq-item">
-          <summary>Does OutreachAI guarantee replies or sales?</summary>
+          <summary>Does OutreachAI guarantee sales or replies?</summary>
           <p class="muted text-sm">
-            No. OutreachAI only helps create message drafts. Replies, sales,
-            and business results depend on many factors and are not guaranteed.
+            No. OutreachAI helps create message drafts. Replies, sales,
+            and business results depend on many factors.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I edit the generated message?</summary>
+          <p class="muted text-sm">
+            Yes. Copy the generated draft and edit it in your preferred
+            text editor or email application.
           </p>
         </details>
 
@@ -563,21 +578,583 @@ body {
     </section>
 
 
-    <!-- BOTTOM AD PLACEHOLDER -->
-    <section class="max-w-5xl mx-auto px-5 pb-12">
-      <div class="ad-placeholder">
-        Advertisement
-        <br>
-        Ad space — configure this after AdSense approval.
-      </div>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="max-w-4xl mx-auto px-5 py-12 text-center">
+      <h2 class="text-3xl font-extrabold">About OutreachAI</h2>
+
+      <p class="muted text-sm leading-8 mt-5">
+        OutreachAI is a simple online tool designed to help freelancers,
+        entrepreneurs, and professionals prepare outreach message drafts.
+        Users can select a goal, choose a tone, enter relevant details,
+        and create a message they can review and personalize.
+      </p>
+
+      <p class="muted text-sm leading-8 mt-3">
+        Our goal is to make professional communication easier to start.
+        OutreachAI is an independent drafting tool and does not guarantee
+        business outcomes, replies, or sales.
+      </p>
     </section>
 
 
-    <!-- ABOUT -->
-    <section id="about" class="max-w-4xl mx-auto px-5 py-12 text-center">
-      <h2 class="text-3xl font-extrabold">About OutreachAI</h2>
-      <p class="muted leading-8 text-sm mt-5">
-        OutreachAI is a simple online tool designed to help freelancers,
-        entrepreneurs, and professionals prepare outreach message drafts.
-        Users can select an outreach goal, choose a tone, enter relevant
-        details, and create a m
+    <!-- THIRD AD SPACE -->
+    <section class="max-w-5xl mx-auto px-5 pb-12">
+      <div class="ad-placeholder">Advertisement space</div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 mt-8">
+
+    <div class="max-w-6xl mx-auto px-5 py-9">
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+
+        <div class="text-center md:text-left">
+          <div class="font-extrabold text-xl">
+            Outreach<span class="text-blue-500">AI</span>
+          </div>
+          <p class="muted text-xs mt-2">Make every message more meaningful.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-5 text-sm muted">
+          <button type="button" data-modal="aboutModal" class="nav-link">About Us</button>
+          <button type="button" data-modal="privacyModal" class="nav-link">Privacy Policy</button>
+          <button type="button" data-modal="termsModal" class="nav-link">Terms of Use</button>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-200 dark:border-slate-800 mt-7 pt-6 text-center">
+        <p class="muted text-xs">
+          © <span id="year"></span> OutreachAI. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ABOUT MODAL -->
+  <div id="aboutModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-content surface rounded-2xl p-7">
+
+      <div class="flex justify-between items-center mb-5">
+        <h2 id="aboutTitle" class="text-2xl font-bold">About OutreachAI</h2>
+        <button type="button" class="closeModal text-2xl" aria-label="Close">×</button>
+      </div>
+
+      <p class="muted text-sm leading-8">
+        OutreachAI is a free online message drafting tool. It helps users
+        prepare professional messages for sales outreach, freelance
+        opportunities, and business collaborations.
+      </p>
+
+      <p class="muted text-sm leading-8 mt-3">
+        The current generator uses built-in templates in the browser.
+        It is not an automated email-sending service and does not guarantee
+        responses or business results.
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- PRIVACY MODAL -->
+  <div id="privacyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="modal-content surface rounded-2xl p-7">
+
+      <div class="flex justify-between items-center mb-5">
+        <h2 id="privacyTitle" class="text-2xl font-bold">Privacy Policy</h2>
+        <button type="button" class="closeModal text-2xl" aria-label="Close">×</button>
+      </div>
+
+      <div class="muted text-sm leading-8 space-y-4">
+
+        <p><strong>Last updated:</strong> November 8, 2026</p>
+
+        <p>
+          This Privacy Policy explains how information may be handled
+          when you use OutreachAI.
+        </p>
+
+        <h3 class="font-bold text-base">1. Information You Enter</h3>
+        <p>
+          The current generator processes the information you enter locally
+          in your browser. It does not send form details to an OutreachAI
+          server or store them in an OutreachAI database.
+        </p>
+
+        <h3 class="font-bold text-base">2. Cookies and Advertising</h3>
+        <p>
+          If third-party advertising services such as Google AdSense are
+          enabled, those services may use cookies or similar technologies
+          to display and measure advertisements. Their data practices
+          are governed by their own privacy policies.
+        </p>
+
+        <h3 class="font-bold text-base">3. Third-Party Resources</h3>
+        <p>
+          This website uses third-party resources such as fonts and a
+          CSS framework. Those providers may receive technical information
+          when your browser requests their resources.
+        </p>
+
+        <h3 class="font-bold text-base">4. Personal Information</h3>
+        <p>
+          Do not enter passwords, financial information, or other sensitive
+          personal information into the message generator.
+        </p>
+
+        <h3 class="font-bold text-base">5. Policy Changes</h3>
+        <p>
+          This policy may be updated when website features or third-party
+          services change. The published version should accurately describe
+          the website's actual practices.
+        </p>
+
+        <h3 class="font-bold text-base">6. Contact</h3>
+        <p>
+          Add a real website owner contact method here so visitors can
+          contact you about privacy questions.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TERMS MODAL -->
+  <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <div class="modal-content surface rounded-2xl p-7">
+
+      <div class="flex justify-between items-center mb-5">
+        <h2 id="termsTitle" class="text-2xl font-bold">Terms of Use</h2>
+        <button type="button" class="closeModal text-2xl" aria-label="Close">×</button>
+      </div>
+
+      <div class="muted text-sm leading-8 space-y-4">
+
+        <p><strong>Last updated:</strong> November 8, 2026</p>
+
+        <p>
+          By accessing OutreachAI, you agree to use the website responsibly
+          and follow these terms.
+        </p>
+
+        <h3 class="font-bold text-base">1. Permitted Use</h3>
+        <p>
+          You may use this tool to create drafts for legitimate professional
+          communication. You are responsible for reviewing messages before
+          using them.
+        </p>
+
+        <h3 class="font-bold text-base">2. No Guarantee</h3>
+        <p>
+          OutreachAI does not guarantee email replies, customers, sales,
+          partnerships, or any particular business result.
+        </p>
+
+        <h3 class="font-bold text-base">3. Responsible Communication</h3>
+        <p>
+          Do not use generated messages for fraud, harassment, misleading
+          claims, spam, or unlawful activities. Respect recipients'
+          communication preferences and applicable laws.
+        </p>
+
+        <h3 class="font-bold text-base">4. Availability</h3>
+        <p>
+          Website features may be updated, changed, or discontinued.
+        </p>
+
+        <h3 class="font-bold text-base">5. Responsibility</h3>
+        <p>
+          You are responsible for the accuracy and appropriateness of
+          messages you send.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ALL JAVASCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // ----------------------------------
+      // 1. THEME SWITCHER
+      // ----------------------------------
+
+      const themeButton = document.getElementById("themeToggle");
+      const htmlElement = document.documentElement;
+
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          htmlElement.classList.add("dark");
+          themeButton.textContent = "☀ Light";
+        } else {
+          htmlElement.classList.remove("dark");
+          themeButton.textContent = "☾ Dark";
+        }
+
+        try {
+          localStorage.setItem("outreach-theme", theme);
+        } catch (error) {
+          // Theme still works if browser storage is unavailable.
+        }
+      }
+
+      let startingTheme = "light";
+
+      try {
+        startingTheme = localStorage.getItem("outreach-theme") || "light";
+      } catch (error) {
+        startingTheme = "light";
+      }
+
+      applyTheme(startingTheme);
+
+      themeButton.addEventListener("click", function () {
+        const currentlyDark = htmlElement.classList.contains("dark");
+        applyTheme(currentlyDark ? "light" : "dark");
+      });
+
+
+      // ----------------------------------
+      // 2. GET FORM ELEMENTS
+      // ----------------------------------
+
+      const yourName = document.getElementById("yourName");
+      const prospectName = document.getElementById("prospectName");
+      const companyName = document.getElementById("companyName");
+      const goal = document.getElementById("goal");
+      const tone = document.getElementById("tone");
+      const length = document.getElementById("length");
+      const details = document.getElementById("details");
+
+      const generateButton = document.getElementById("generateBtn");
+      const regenerateButton = document.getElementById("regenerateBtn");
+      const copyButton = document.getElementById("copyBtn");
+      const clearButton = document.getElementById("clearBtn");
+
+      const emptyState = document.getElementById("emptyState");
+      const resultArea = document.getElementById("resultArea");
+      const resultText = document.getElementById("resultText");
+      const statusMessage = document.getElementById("statusMessage");
+
+      let currentMessage = "";
+
+
+      // ----------------------------------
+      // 3. MESSAGE TEMPLATE LIBRARY
+      // ----------------------------------
+
+      const messageTemplates = {
+
+        sales: [
+          {
+            subject: "A quick idea for {company}",
+            short:
+              "Hi {recipient},\n\nI came across {company} and wanted to introduce myself. I offer {offer}.\n\nWould you be open to learning more?\n\nBest,\n{sender}",
+            medium:
+              "Hi {recipient},\n\nI hope you're doing well. I recently came across {company} and wanted to introduce myself.\n\nI offer {offer}, and I thought it might be relevant to your business.\n\nWould you be open to a brief conversation to explore whether it could be useful?\n\nBest regards,\n{sender}",
+            long:
+              "Hi {recipient},\n\nI hope you're having a great day. I recently discovered {company} and wanted to reach out with an idea.\n\nI work with {offer}. I'd be interested in understanding your current priorities and seeing whether my service could be relevant to your team.\n\nIf this sounds useful, I'd be happy to share more information and discuss the details.\n\nThank you for your time.\n\nBest regards,\n{sender}"
+          },
+          {
+            subject: "Potential opportunity for {company}",
+            short:
+              "Hello {recipient},\n\nI'd like to introduce {offer} as a possible resource for {company}.\n\nWould you be interested in learning more?\n\nRegards,\n{sender}",
+            medium:
+              "Hello {recipient},\n\nI'm reaching out because I believe {offer} may be relevant to the work being done at {company}.\n\nI'd appreciate the opportunity to explain the idea and understand whether it could help your team.\n\nWould you be available for a short conversation?\n\nRegards,\n{sender}",
+            long:
+              "Hello {recipient},\n\nI wanted to introduce myself and share a possible opportunity for {company}.\n\nMy work focuses on {offer}. I would first like to understand your needs and explore whether there is a practical way I could help.\n\nIf you are interested, I can share additional information and answer any questions you may have.\n\nThank you for considering my message.\n\nRegards,\n{sender}"
+          }
+        ],
+
+        freelance: [
+          {
+            subject: "Freelance support for {company}",
+            short:
+              "Hi {recipient},\n\nI'm {sender}, and I provide {offer}.\n\nIs {company} currently open to freelance support?\n\nI'd be happy to share examples of my work.\n\nBest,\n{sender}",
+            medium:
+              "Hi {recipient},\n\nMy name is {sender}, and I provide freelance services in {offer}.\n\nI came across {company} and wanted to ask whether your team is currently considering freelance support for upcoming projects.\n\nIf useful, I can share relevant work samples and discuss your requirements.\n\nBest regards,\n{sender}",
+            long:
+              "Hi {recipient},\n\nI hope you're doing well. My name is {sender}, and I work as a freelancer providing {offer}.\n\nI discovered {company} and thought my skills might be relevant to your team's projects. I would welcome the opportunity to understand what kind of support you may need.\n\nI can share portfolio samples so you can review my work and decide whether there is a suitable fit.\n\nWould you be open to discussing a possible project?\n\nThank you for your time.\n\nBest regards,\n{sender}"
+          },
+          {
+            subject: "Available for freelance projects",
+            short:
+              "Hello {recipient},\n\nI provide {offer} and am interested in supporting businesses like {company}.\n\nAre you currently open to working with freelancers?\n\nThanks,\n{sender}",
+            medium:
+              "Hello {recipient},\n\nI'm reaching out to introduce my freelance services in {offer}.\n\nI would be interested in learning whether {company} works with independent professionals for project-based support.\n\nIf there is a potential fit, I can share my portfolio and discuss the details.\n\nThanks for your consideration,\n{sender}",
+            long:
+              "Hello {recipient},\n\nI wanted to introduce myself and my freelance services. I work in {offer} and am interested in connecting with businesses that may need project-based support.\n\nI came across {company} and would appreciate the opportunity to learn whether your team works with freelancers.\n\nI can provide portfolio examples, discuss project requirements, and explain my working process.\n\nIf this is relevant to your current or future needs, I'd be glad to hear from you.\n\nKind regards,\n{sender}"
+          }
+        ],
+
+        collaboration: [
+          {
+            subject: "Collaboration idea for {company}",
+            short:
+              "Hi {recipient},\n\nI came across {company} and wanted to explore a possible collaboration around {offer}.\n\nWould you be open to discussing the idea?\n\nBest,\n{sender}",
+            medium:
+              "Hi {recipient},\n\nI hope you're doing well. I discovered {company} and thought there could be an opportunity for us to collaborate.\n\nI have an idea involving {offer} and would like to explore whether it aligns with your current goals.\n\nWould you be interested in a short conversation?\n\nBest regards,\n{sender}",
+            long:
+              "Hi {recipient},\n\nI hope all is well. I've been learning about {company} and wanted to reach out with a possible collaboration idea.\n\nMy idea focuses on {offer}. I would like to explore whether our interests and goals align and whether there is a meaningful opportunity to work together.\n\nIf you're open to it, I'd be happy to share more details and hear your thoughts.\n\nThank you for your time.\n\nBest regards,\n{sender}"
+          },
+          {
+            subject: "Exploring a possible partnership",
+            short:
+              "Hello {recipient},\n\nI'd like to explore a possible partnership with {company} around {offer}.\n\nWould you be available to discuss the idea?\n\nRegards,\n{sender}",
+            medium:
+              "Hello {recipient},\n\nI'm reaching out to see if there may be an opportunity to work together.\n\nI have an idea related to {offer} and believe it could be worth exploring with {company}.\n\nIf you're interested, I'd be happy to share more details and hear your perspective.\n\nRegards,\n{sender}",
+            long:
+              "Hello {recipient},\n\nI'm contacting you because I see a possible opportunity to explore a partnership with {company}.\n\nThe idea I have in mind relates to {offer}. I would like to learn more about your current objectives and see whether there is a meaningful way for us to work together.\n\nIf you're open to it, I'd appreciate the opportunity to exchange ideas and understand whether a collaboration makes sense.\n\nKind regards,\n{sender}"
+          }
+        ]
+
+      };
+
+
+      // ----------------------------------
+      // 4. MESSAGE GENERATION
+      // ----------------------------------
+
+      function replacePlaceholders(text, values) {
+        return text
+          .replace(/\{sender\}/g, values.sender)
+          .replace(/\{recipient\}/g, values.recipient)
+          .replace(/\{company\}/g, values.company)
+          .replace(/\{offer\}/g, values.offer);
+      }
+
+      function getToneOpening(selectedTone) {
+        const openings = {
+          professional: "I hope you're doing well.",
+          friendly: "Hope you're having a great day!",
+          confident: "I'm reaching out with an idea I'd like to share.",
+          casual: "Hope things are going well!"
+        };
+
+        return openings[selectedTone] || openings.professional;
+      }
+
+      function generateMessage() {
+
+        const sender = yourName.value.trim() || "Your Name";
+        const recipient = prospectName.value.trim() || "there";
+        const company = companyName.value.trim() || "your company";
+        const offer = details.value.trim() || "my services and solutions";
+
+        const selectedGoal = goal.value;
+        const selectedLength = length.value;
+        const selectedTone = tone.value;
+
+        const availableTemplates = messageTemplates[selectedGoal];
+
+        if (!availableTemplates || availableTemplates.length === 0) {
+          statusMessage.textContent = "Please select a valid outreach goal.";
+          return;
+        }
+
+        // Select one template randomly.
+        const randomIndex = Math.floor(Math.random() * availableTemplates.length);
+        const selectedTemplate = availableTemplates[randomIndex];
+
+        // Prepare the message using the selected length.
+        let message = selectedTemplate[selectedLength];
+
+        if (!message) {
+          message = selectedTemplate.medium;
+        }
+
+        message = replacePlaceholders(message, {
+          sender: sender,
+          recipient: recipient,
+          company: company,
+          offer: offer
+        });
+
+        // Add a tone-specific opening.
+        const greeting = recipient === "there" ? "Hi there," : "Hi " + recipient + ",";
+        const opening = getToneOpening(selectedTone);
+
+        message = message.replace(greeting, greeting + "\n\n" + opening);
+
+        // Add the subject and message together.
+        const subject = replacePlaceholders(selectedTemplate.subject, {
+          sender: sender,
+          recipient: recipient,
+          company: company,
+          offer: offer
+        });
+
+        currentMessage = "Subject: " + subject + "\n\n" + message;
+
+        // Display the generated result.
+        resultText.textContent = currentMessage;
+
+        emptyState.classList.add("hidden");
+        resultArea.classList.remove("hidden");
+
+        copyButton.disabled = false;
+        regenerateButton.disabled = false;
+
+        statusMessage.textContent = "Your message is ready. Review it before sending.";
+      }
+
+
+      // Generate and regenerate buttons.
+      generateButton.addEventListener("click", generateMessage);
+      regenerateButton.addEventListener("click", generateMessage);
+
+
+      // ----------------------------------
+      // 5. COPY MESSAGE
+      // ----------------------------------
+
+      copyButton.addEventListener("click", async function () {
+
+        if (!currentMessage) {
+          statusMessage.textContent = "Generate a message first.";
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(currentMessage);
+          } else {
+            const temporaryInput = document.createElement("textarea");
+            temporaryInput.value = currentMessage;
+            temporaryInput.style.position = "fixed";
+            temporaryInput.style.opacity = "0";
+
+            document.body.appendChild(temporaryInput);
+            temporaryInput.focus();
+            temporaryInput.select();
+
+            const copied = document.execCommand("copy");
+            temporaryInput.remove();
+
+            if (!copied) {
+              throw new Error("Copy command was unsuccessful.");
+            }
+          }
+
+          statusMessage.textContent = "Message copied successfully!";
+
+        } catch (error) {
+          statusMessage.textContent = "Copy was not available. Please select and copy the text manually.";
+        }
+
+      });
+
+
+      // ----------------------------------
+      // 6. CLEAR FORM
+      // ----------------------------------
+
+      clearButton.addEventListener("click", function () {
+
+        yourName.value = "";
+        prospectName.value = "";
+        companyName.value = "";
+        goal.value = "sales";
+        tone.value = "professional";
+        length.value = "medium";
+        details.value = "";
+
+        currentMessage = "";
+        resultText.textContent = "";
+
+        resultArea.classList.add("hidden");
+        emptyState.classList.remove("hidden");
+
+        copyButton.disabled = true;
+        regenerateButton.disabled = true;
+
+        statusMessage.textContent = "All fields have been cleared.";
+
+      });
+
+
+      // ----------------------------------
+      // 7. FOOTER MODALS
+      // ----------------------------------
+
+      document.querySelectorAll("[data-modal]").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+          const modalId = button.getAttribute("data-modal");
+          const modal = document.getElementById(modalId);
+
+          if (modal) {
+            modal.classList.add("active");
+          }
+        });
+
+      });
+
+      document.querySelectorAll(".closeModal").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+          const modal = button.closest(".modal");
+
+          if (modal) {
+            modal.classList.remove("active");
+          }
+        });
+
+      });
+
+      document.querySelectorAll(".modal").forEach(function (modal) {
+
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.classList.remove("active");
+          }
+        });
+
+      });
+
+      document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+          document.querySelectorAll(".modal.active").forEach(function (modal) {
+            modal.classList.remove("active");
+          });
+        }
+
+      });
+
+
+      // ----------------------------------
+      // 8. FOOTER YEAR
+      // ----------------------------------
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+    });
+  </script>
+
+
+  <!--
+    ADSENSE SETUP NOTES
+
+    The advertisement spaces above are placeholders only.
+
+    After AdSense approval:
+    1. Copy the official AdSense script from your AdSense account.
+    2. Add it to the head section as instructed by Google.
+    3. Replace suitable placeholders with your actual ad-unit code.
+    4. Follow Google's consent and advertising policies.
+
+    Never use a made-up Publisher ID or Ad Slot ID.
+  -->
+
+</body>
+</html>
