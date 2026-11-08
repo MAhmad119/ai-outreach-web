@@ -41,18 +41,17 @@
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  transition: background .2s, color .2s;
+}
 
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      transition: background .2s, color .2s;
-    }
-
-    .dark body {
-      background: #080d18;
-      color: #e5e7eb;
-    }
-
-    body {
+.dark body {
+  background: #080d18;
+  color: #e5e7eb;
+}
+  body {
       background: #f8fafc;
       color: #0f172a;
     }
