@@ -849,211 +849,346 @@
 
 
       // ----------------------------------
-      // 3. MESSAGE TEMPLATE LIBRARY
-      // ----------------------------------
+        
+// ==========================================
+// 3. DYNAMIC MESSAGE GENERATION LIBRARY
+// ==========================================
 
-      const messageTemplates = {
+const messageLibrary = {
 
-        sales: [
-          {
-            subject: "A quick idea for {company}",
-            short:
-              "Hi {recipient},\n\nI came across {company} and wanted to introduce myself. I offer {offer}.\n\nWould you be open to learning more?\n\nBest,\n{sender}",
-            medium:
-              "Hi {recipient},\n\nI hope you're doing well. I recently came across {company} and wanted to introduce myself.\n\nI offer {offer}, and I thought it might be relevant to your business.\n\nWould you be open to a brief conversation to explore whether it could be useful?\n\nBest regards,\n{sender}",
-            long:
-              "Hi {recipient},\n\nI hope you're having a great day. I recently discovered {company} and wanted to reach out with an idea.\n\nI work with {offer}. I'd be interested in understanding your current priorities and seeing whether my service could be relevant to your team.\n\nIf this sounds useful, I'd be happy to share more information and discuss the details.\n\nThank you for your time.\n\nBest regards,\n{sender}"
-          },
-          {
-            subject: "Potential opportunity for {company}",
-            short:
-              "Hello {recipient},\n\nI'd like to introduce {offer} as a possible resource for {company}.\n\nWould you be interested in learning more?\n\nRegards,\n{sender}",
-            medium:
-              "Hello {recipient},\n\nI'm reaching out because I believe {offer} may be relevant to the work being done at {company}.\n\nI'd appreciate the opportunity to explain the idea and understand whether it could help your team.\n\nWould you be available for a short conversation?\n\nRegards,\n{sender}",
-            long:
-              "Hello {recipient},\n\nI wanted to introduce myself and share a possible opportunity for {company}.\n\nMy work focuses on {offer}. I would first like to understand your needs and explore whether there is a practical way I could help.\n\nIf you are interested, I can share additional information and answer any questions you may have.\n\nThank you for considering my message.\n\nRegards,\n{sender}"
-          }
-        ],
+  sales: {
+    subjects: [
+      "A quick idea for {company}",
+      "An opportunity for {company}",
+      "A possible way to support {company}",
+      "Exploring a business opportunity",
+      "A suggestion for your team",
+      "Connecting with {company}",
+      "A potential solution for your business",
+      "Could this be useful for {company}?",
+      "A quick introduction",
+      "An idea worth exploring"
+    ],
 
-        freelance: [
-          {
-            subject: "Freelance support for {company}",
-            short:
-              "Hi {recipient},\n\nI'm {sender}, and I provide {offer}.\n\nIs {company} currently open to freelance support?\n\nI'd be happy to share examples of my work.\n\nBest,\n{sender}",
-            medium:
-              "Hi {recipient},\n\nMy name is {sender}, and I provide freelance services in {offer}.\n\nI came across {company} and wanted to ask whether your team is currently considering freelance support for upcoming projects.\n\nIf useful, I can share relevant work samples and discuss your requirements.\n\nBest regards,\n{sender}",
-            long:
-              "Hi {recipient},\n\nI hope you're doing well. My name is {sender}, and I work as a freelancer providing {offer}.\n\nI discovered {company} and thought my skills might be relevant to your team's projects. I would welcome the opportunity to understand what kind of support you may need.\n\nI can share portfolio samples so you can review my work and decide whether there is a suitable fit.\n\nWould you be open to discussing a possible project?\n\nThank you for your time.\n\nBest regards,\n{sender}"
-          },
-          {
-            subject: "Available for freelance projects",
-            short:
-              "Hello {recipient},\n\nI provide {offer} and am interested in supporting businesses like {company}.\n\nAre you currently open to working with freelancers?\n\nThanks,\n{sender}",
-            medium:
-              "Hello {recipient},\n\nI'm reaching out to introduce my freelance services in {offer}.\n\nI would be interested in learning whether {company} works with independent professionals for project-based support.\n\nIf there is a potential fit, I can share my portfolio and discuss the details.\n\nThanks for your consideration,\n{sender}",
-            long:
-              "Hello {recipient},\n\nI wanted to introduce myself and my freelance services. I work in {offer} and am interested in connecting with businesses that may need project-based support.\n\nI came across {company} and would appreciate the opportunity to learn whether your team works with freelancers.\n\nI can provide portfolio examples, discuss project requirements, and explain my working process.\n\nIf this is relevant to your current or future needs, I'd be glad to hear from you.\n\nKind regards,\n{sender}"
-          }
-        ],
+    openings: [
+      "I recently discovered your company and wanted to reach out.",
+      "I came across your business and found your work interesting.",
+      "I wanted to introduce myself and share a quick idea.",
+      "I've been exploring businesses in your industry and found {company}.",
+      "I thought it would be worthwhile to connect with your team.",
+      "I wanted to get in touch regarding a possible opportunity.",
+      "Your business caught my attention, so I decided to reach out.",
+      "I'm contacting you because I see a possible fit."
+    ],
 
-        collaboration: [
-          {
-            subject: "Collaboration idea for {company}",
-            short:
-              "Hi {recipient},\n\nI came across {company} and wanted to explore a possible collaboration around {offer}.\n\nWould you be open to discussing the idea?\n\nBest,\n{sender}",
-            medium:
-              "Hi {recipient},\n\nI hope you're doing well. I discovered {company} and thought there could be an opportunity for us to collaborate.\n\nI have an idea involving {offer} and would like to explore whether it aligns with your current goals.\n\nWould you be interested in a short conversation?\n\nBest regards,\n{sender}",
-            long:
-              "Hi {recipient},\n\nI hope all is well. I've been learning about {company} and wanted to reach out with a possible collaboration idea.\n\nMy idea focuses on {offer}. I would like to explore whether our interests and goals align and whether there is a meaningful opportunity to work together.\n\nIf you're open to it, I'd be happy to share more details and hear your thoughts.\n\nThank you for your time.\n\nBest regards,\n{sender}"
-          },
-          {
-            subject: "Exploring a possible partnership",
-            short:
-              "Hello {recipient},\n\nI'd like to explore a possible partnership with {company} around {offer}.\n\nWould you be available to discuss the idea?\n\nRegards,\n{sender}",
-            medium:
-              "Hello {recipient},\n\nI'm reaching out to see if there may be an opportunity to work together.\n\nI have an idea related to {offer} and believe it could be worth exploring with {company}.\n\nIf you're interested, I'd be happy to share more details and hear your perspective.\n\nRegards,\n{sender}",
-            long:
-              "Hello {recipient},\n\nI'm contacting you because I see a possible opportunity to explore a partnership with {company}.\n\nThe idea I have in mind relates to {offer}. I would like to learn more about your current objectives and see whether there is a meaningful way for us to work together.\n\nIf you're open to it, I'd appreciate the opportunity to exchange ideas and understand whether a collaboration makes sense.\n\nKind regards,\n{sender}"
-          }
-        ]
+    value: [
+      "I offer {offer}, which may be relevant to your current business needs.",
+      "My focus is on {offer}, and I would like to explore whether it could help your team.",
+      "I would love to understand your goals and see if my services could be useful.",
+      "I believe there may be an opportunity to create value through {offer}.",
+      "I'd be interested in discussing how {offer} might fit your business.",
+      "I have been working on ideas around {offer} that may be worth exploring.",
+      "My goal is to offer a practical solution based on your requirements.",
+      "I would appreciate the chance to explain how I could contribute."
+    ],
 
-      };
+    cta: [
+      "Would you be open to a short conversation?",
+      "Would you like me to share more information?",
+      "Is this something your team might be interested in?",
+      "Would it be okay if I sent you a few more details?",
+      "I'd be glad to hear your thoughts.",
+      "Would you be available for a quick discussion?",
+      "Does this sound relevant to your current goals?"
+    ],
 
+    closings: [
+      "Best regards,",
+      "Kind regards,",
+      "Thanks for your time,",
+      "Best wishes,",
+      "Thank you,"
+    ]
+  },
 
-      // ----------------------------------
-      // 4. MESSAGE GENERATION
-      // ----------------------------------
+  freelance: {
+    subjects: [
+      "Freelance support for {company}",
+      "Available for freelance projects",
+      "A quick introduction from a freelancer",
+      "Can I support your next project?",
+      "Freelance services for your team",
+      "Exploring a possible freelance opportunity",
+      "A potential fit for your upcoming projects",
+      "Professional support for {company}"
+    ],
 
-      function replacePlaceholders(text, values) {
-        return text
-          .replace(/\{sender\}/g, values.sender)
-          .replace(/\{recipient\}/g, values.recipient)
-          .replace(/\{company\}/g, values.company)
-          .replace(/\{offer\}/g, values.offer);
-      }
+    openings: [
+      "I'm reaching out to introduce my freelance services.",
+      "I recently came across {company} and wanted to connect.",
+      "I wanted to ask whether your team works with freelancers.",
+      "I am interested in supporting businesses with their projects.",
+      "I noticed your business and thought my skills might be relevant.",
+      "I'm currently exploring opportunities to work with new clients.",
+      "I'd like to introduce myself as a freelance professional.",
+      "I wanted to see if you might need additional project support."
+    ],
 
-      function getToneOpening(selectedTone) {
-        const openings = {
-          professional: "I hope you're doing well.",
-          friendly: "Hope you're having a great day!",
-          confident: "I'm reaching out with an idea I'd like to share.",
-          casual: "Hope things are going well!"
-        };
+    value: [
+      "I provide {offer} and would be happy to discuss your requirements.",
+      "My services focus on {offer}, and I can share relevant work samples.",
+      "I'd love to understand your project goals and see if I can help.",
+      "I can offer project-based support depending on your needs.",
+      "I would be glad to discuss a suitable working arrangement.",
+      "My aim is to deliver reliable work that matches your project requirements.",
+      "I can share my portfolio so you can review my skills and experience.",
+      "I'd appreciate the opportunity to contribute to your upcoming work."
+    ],
 
-        return openings[selectedTone] || openings.professional;
-      }
+    cta: [
+      "Are you currently considering freelance support?",
+      "Would you be interested in reviewing my portfolio?",
+      "Could we discuss any upcoming projects?",
+      "Would you be open to connecting?",
+      "Is there an opportunity to work together?",
+      "May I share a few examples of my work?",
+      "Would you like to discuss your project requirements?"
+    ],
 
-      function generateMessage() {
+    closings: [
+      "Best regards,",
+      "Kind regards,",
+      "Thanks for considering my message,",
+      "Best wishes,",
+      "Thank you,"
+    ]
+  },
 
-        const sender = yourName.value.trim() || "Your Name";
-        const recipient = prospectName.value.trim() || "there";
-        const company = companyName.value.trim() || "your company";
-        const offer = details.value.trim() || "my services and solutions";
+  collaboration: {
+    subjects: [
+      "A collaboration idea for {company}",
+      "Exploring a possible partnership",
+      "An idea for working together",
+      "Potential collaboration opportunity",
+      "Let's explore an opportunity",
+      "Connecting about a possible partnership",
+      "A business idea worth discussing",
+      "Could we work together?"
+    ],
 
-        const selectedGoal = goal.value;
-        const selectedLength = length.value;
-        const selectedTone = tone.value;
+    openings: [
+      "I recently discovered {company} and wanted to connect.",
+      "I've been following businesses in this space and wanted to reach out.",
+      "I wanted to explore whether there could be an opportunity to work together.",
+      "Your business caught my attention, and I have an idea to share.",
+      "I'm reaching out to introduce a possible collaboration.",
+      "I believe there may be some common ground between our interests.",
+      "I wanted to start a conversation about a possible partnership.",
+      "I'd be interested in exchanging ideas with your team."
+    ],
 
-        const availableTemplates = messageTemplates[selectedGoal];
+    value: [
+      "My idea is related to {offer}, and I'd like to explore its potential.",
+      "I believe we could explore something useful around {offer}.",
+      "I'd love to understand your current goals and see whether our interests align.",
+      "There may be an opportunity to create something valuable together.",
+      "I would be happy to discuss possible ways to work together.",
+      "I think {offer} could be a useful starting point for a discussion.",
+      "I'd like to explore a partnership that offers value to both sides.",
+      "I'm interested in sharing ideas and learning about your perspective."
+    ],
 
-        if (!availableTemplates || availableTemplates.length === 0) {
-          statusMessage.textContent = "Please select a valid outreach goal.";
-          return;
-        }
+    cta: [
+      "Would you be interested in discussing this idea?",
+      "Would you be open to a quick conversation?",
+      "Could we exchange a few ideas?",
+      "Would you like to explore this opportunity?",
+      "I'd appreciate hearing your thoughts.",
+      "Is this something worth discussing?",
+      "Would you be available to connect sometime?"
+    ],
 
-        // Select one template randomly.
-        const randomIndex = Math.floor(Math.random() * availableTemplates.length);
-        const selectedTemplate = availableTemplates[randomIndex];
+    closings: [
+      "Best regards,",
+      "Kind regards,",
+      "Looking forward to hearing from you,",
+      "Best wishes,",
+      "Thank you,"
+    ]
+  }
 
-        // Prepare the message using the selected length.
-        let message = selectedTemplate[selectedLength];
-
-        if (!message) {
-          message = selectedTemplate.medium;
-        }
-
-        message = replacePlaceholders(message, {
-          sender: sender,
-          recipient: recipient,
-          company: company,
-          offer: offer
-        });
-
-        // Add a tone-specific opening.
-        const greeting = recipient === "there" ? "Hi there," : "Hi " + recipient + ",";
-        const opening = getToneOpening(selectedTone);
-
-        message = message.replace(greeting, greeting + "\n\n" + opening);
-
-        // Add the subject and message together.
-        const subject = replacePlaceholders(selectedTemplate.subject, {
-          sender: sender,
-          recipient: recipient,
-          company: company,
-          offer: offer
-        });
-
-        currentMessage = "Subject: " + subject + "\n\n" + message;
-
-        // Display the generated result.
-        resultText.textContent = currentMessage;
-
-        emptyState.classList.add("hidden");
-        resultArea.classList.remove("hidden");
-
-        copyButton.disabled = false;
-        regenerateButton.disabled = false;
-
-        statusMessage.textContent = "Your message is ready. Review it before sending.";
-      }
-
-
-      // Generate and regenerate buttons.
-      generateButton.addEventListener("click", generateMessage);
-      regenerateButton.addEventListener("click", generateMessage);
-
-
-      // ----------------------------------
-      // 5. COPY MESSAGE
-      // ----------------------------------
-
-      copyButton.addEventListener("click", async function () {
-
-        if (!currentMessage) {
-          statusMessage.textContent = "Generate a message first.";
-          return;
-        }
-
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(currentMessage);
-          } else {
-            const temporaryInput = document.createElement("textarea");
-            temporaryInput.value = currentMessage;
-            temporaryInput.style.position = "fixed";
-            temporaryInput.style.opacity = "0";
-
-            document.body.appendChild(temporaryInput);
-            temporaryInput.focus();
-            temporaryInput.select();
-
-            const copied = document.execCommand("copy");
-            temporaryInput.remove();
-
-            if (!copied) {
-              throw new Error("Copy command was unsuccessful.");
-            }
-          }
-
-          statusMessage.textContent = "Message copied successfully!";
-
-        } catch (error) {
-          statusMessage.textContent = "Copy was not available. Please select and copy the text manually.";
-        }
-
-      });
+};
 
 
+// ==========================================
+// 4. RANDOMIZATION HELPERS
+// ==========================================
+
+let previousMessage = "";
+
+function randomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function fillText(text, values) {
+  return text
+    .replace(/\{sender\}/g, values.sender)
+    .replace(/\{recipient\}/g, values.recipient)
+    .replace(/\{company\}/g, values.company)
+    .replace(/\{offer\}/g, values.offer);
+}
+
+function toneStyle(selectedTone) {
+
+  const tones = {
+
+    professional: {
+      greeting: "Dear {recipient},",
+      transition: "I hope you're doing well."
+    },
+
+    friendly: {
+      greeting: "Hi {recipient},",
+      transition: "Hope you're having a great day!"
+    },
+
+    confident: {
+      greeting: "Hello {recipient},",
+      transition: "I'd like to share a possible opportunity with you."
+    },
+
+    casual: {
+      greeting: "Hey {recipient},",
+      transition: "Hope everything is going well!"
+    }
+
+  };
+
+  return tones[selectedTone] || tones.professional;
+}
+
+
+// ==========================================
+// 5. GENERATE A DYNAMIC MESSAGE
+// ==========================================
+
+function generateMessage() {
+
+  const sender = yourName.value.trim() || "Your Name";
+  const recipient = prospectName.value.trim() || "there";
+  const company = companyName.value.trim() || "your company";
+  const offer = details.value.trim() || "my services and solutions";
+
+  const selectedGoal = goal.value;
+  const selectedTone = tone.value;
+  const selectedLength = length.value;
+
+  const library = messageLibrary[selectedGoal];
+
+  if (!library) {
+    statusMessage.textContent = "Please select a valid outreach goal.";
+    return;
+  }
+
+  const values = {
+    sender,
+    recipient,
+    company,
+    offer
+  };
+
+  const style = toneStyle(selectedTone);
+
+  // Select different sentences for every generation.
+  const subject = fillText(randomItem(library.subjects), values);
+
+  const opening = fillText(randomItem(library.openings), values);
+
+  const valueSentence = fillText(randomItem(library.value), values);
+
+  const callToAction = fillText(randomItem(library.cta), values);
+
+  const closing = randomItem(library.closings);
+
+  const greeting = fillText(style.greeting, values);
+
+  const transition = style.transition;
+
+  // Extra sentence combinations for detailed messages.
+  const extraSentences = [
+    "I would be happy to provide additional details if needed.",
+    "I understand that every business has different priorities.",
+    "My intention is to keep the process simple and useful.",
+    "I would first like to understand your requirements.",
+    "I believe clear communication is the foundation of good work.",
+    "I'd be glad to answer any questions you may have.",
+    "I appreciate the time you take to consider new opportunities.",
+    "I would welcome your feedback on this idea.",
+    "There is no pressure; I'd simply like to start a conversation.",
+    "I'm happy to share more information at your convenience."
+  ];
+
+  let paragraphs = [
+    greeting,
+    transition,
+    opening,
+    valueSentence
+  ];
+
+  if (selectedLength === "medium") {
+
+    paragraphs.push(
+      randomItem(extraSentences)
+    );
+
+  }
+
+  if (selectedLength === "long") {
+
+    const extraOne = randomItem(extraSentences);
+
+    let extraTwo = randomItem(extraSentences);
+
+    while (extraTwo === extraOne) {
+      extraTwo = randomItem(extraSentences);
+    }
+
+    paragraphs.push(extraOne);
+    paragraphs.push(valueSentence);
+    paragraphs.push(extraTwo);
+
+  }
+
+  paragraphs.push(callToAction);
+  paragraphs.push(closing);
+  paragraphs.push(sender);
+
+  // Build the final message.
+  let finalMessage =
+    "Subject: " + subject + "\n\n" +
+    paragraphs.join("\n\n");
+
+  // Avoid repeating the exact previous result.
+  if (finalMessage === previousMessage) {
+    return generateMessage();
+  }
+
+  previousMessage = finalMessage;
+  currentMessage = finalMessage;
+
+  // Display the result safely.
+  resultText.textContent = currentMessage;
+
+  emptyState.classList.add("hidden");
+  resultArea.classList.remove("hidden");
+
+  copyButton.disabled = false;
+  regenerateButton.disabled = false;
+
+  statusMessage.textContent =
+    "New message generated successfully!";
+
+  }
       // ----------------------------------
       // 6. CLEAR FORM
       // ----------------------------------
